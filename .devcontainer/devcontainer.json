@@ -1,0 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:focal",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers/features/python:1": {}
+	},
+	"extensions": [
+		"ms-vscode.cpptools",
+		"maziac.hex-hover-converter",
+		"atlassian.atlascode",
+		"eamodio.gitlens",
+		"GitHub.codespaces",
+		"GitHub.vscode-pull-request-github",
+		"dsznajder.es7-react-js-snippets",
+		"artdiniz.quitcontrol-vscode"
+	],
+	"onCreateCommand": "bash .devcontainer/onCreateCommand.sh"
+}

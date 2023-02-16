@@ -1,0 +1,17 @@
+{
+    "chainId": 1,
+    "contracts": [
+        {
+            "address": "0x0000000000000000000000",
+            "contractName": "",
+            "selectors": {
+                "0x00000000": {
+                    "erc20OfInterest": [],
+                    "method": "",
+                    "plugin": "<Plugin Name>"
+                }
+            }
+        }
+    ],
+    "name": "<Plugin Name>"
+}
