@@ -1,8 +1,8 @@
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
 void handle_query_contract_id(void *parameters) {
     ethQueryContractID_t *msg = (ethQueryContractID_t *) parameters;
-    <Plugin Name>_parameters_t *context = (<Plugin Name>_parameters_t *) msg->pluginContext;
+   cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
 
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
 

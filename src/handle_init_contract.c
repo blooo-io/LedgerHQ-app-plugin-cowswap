@@ -1,4 +1,4 @@
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
 // Called once to init.
 void handle_init_contract(void *parameters) {
@@ -9,25 +9,25 @@ void handle_init_contract(void *parameters) {
         return;
     }
 
-    if (msg->pluginContextLength < sizeof(<Plugin Name>_parameters_t)) {
+    if (msg->pluginContextLength < sizeof(cowswap_parameters_t)) {
         msg->result = ETH_PLUGIN_RESULT_ERROR;
         return;
     }
 
-    <Plugin Name>_parameters_t *context = (<Plugin Name>_parameters_t *) msg->pluginContext;
+    cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
     memset(context, 0, sizeof(*context));
     context->valid = 1;
 
     // Determine a function to call
     size_t i;
-    for (i = 0; i < NUM_<Plugin Uppercase Name>_SELECTORS; i++) {
-        if (memcmp((uint8_t *) PIC(<Plugin Uppercase Name>_SELECTORS[i]), msg->selector, SELECTOR_SIZE) == 0) {
+    for (i = 0; i < NUM_COWSWAP_SELECTORS; i++) {
+        if (memcmp((uint8_t *) PIC(COWSWAP_SELECTORS[i]), msg->selector, SELECTOR_SIZE) == 0) {
             context->selectorIndex = i;
             break;
         }
     }
 
-    if (i == NUM_<Plugin Uppercase Name>_SELECTORS) {
+    if (i == NUM_COWSWAP_SELECTORS) {
         // Selector was not found
         msg->result = ETH_PLUGIN_RESULT_ERROR;
         return;

@@ -1,18 +1,18 @@
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
-static void sent_network_token(<Plugin Name>_parameters_t *context) {
+static void sent_network_token(cowswap_parameters_t *context) {
     context->decimals_sent = WEI_TO_ETHER;
     context->tokens_found |= TOKEN_SENT_FOUND;
 }
 
-static void received_network_token(<Plugin Name>_parameters_t *context) {
+static void received_network_token(cowswap_parameters_t *context) {
     context->decimals_received = WEI_TO_ETHER;
     context->tokens_found |= TOKEN_RECEIVED_FOUND;
 }
 
 void handle_finalize(void *parameters) {
     ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
-    <Plugin Name>_parameters_t *context = (<Plugin Name>_parameters_t *) msg->pluginContext;
+    cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
     if (context->valid) {
         msg->numScreens = 2;
         if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {

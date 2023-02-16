@@ -1,13 +1,13 @@
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
 // Store the amount sent in the form of a string, without any ticker or decimals. These will be
 // added when displaying.
-static void handle_amount_sent(ethPluginProvideParameter_t *msg, <Plugin Name>_parameters_t *context) {
+static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 }
 
 static void handle_plugin_generic(ethPluginProvideParameter_t *msg,
-                                  <Plugin Name>_parameters_t *context) {
+                                  cowswap_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT_SENT:
             handle_amount_sent(msg, context);
@@ -24,7 +24,7 @@ static void handle_plugin_generic(ethPluginProvideParameter_t *msg,
 
 void handle_provide_parameter(void *parameters) {
     ethPluginProvideParameter_t *msg = (ethPluginProvideParameter_t *) parameters;
-    <Plugin Name>_parameters_t *context = (<Plugin Name>_parameters_t *) msg->pluginContext;
+    cowswap_parameters_t *context = (cowswap>_parameters_t *) msg->pluginContext;
     printf_hex_array("Plugin provide parameter: ", PARAMETER_LENGTH, msg->parameter);
 
     msg->result = ETH_PLUGIN_RESULT_OK;

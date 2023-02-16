@@ -1,7 +1,7 @@
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
 // Set UI for the "Send" screen.
-static void set_send_ui(ethQueryContractUI_t *msg, <Plugin Name>_parameters_t *context) {
+static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case <Plugin Function Name>:
             strlcpy(msg->title, "Send", msg->titleLength);
@@ -28,7 +28,7 @@ static void set_send_ui(ethQueryContractUI_t *msg, <Plugin Name>_parameters_t *c
 }
 
 // Set UI for "Receive" screen.
-static void set_receive_ui(ethQueryContractUI_t *msg, <Plugin Name>_parameters_t *context) {
+static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case <Plugin Function Name>:
             strlcpy(msg->title, "Receive", msg->titleLength);
@@ -56,14 +56,14 @@ static void set_receive_ui(ethQueryContractUI_t *msg, <Plugin Name>_parameters_t
 
 // Set UI for "Warning" screen.
 static void set_warning_ui(ethQueryContractUI_t *msg,
-                           const <Plugin Name>_parameters_t *context __attribute__((unused))) {
+                           const cowswap_parameters_t *context __attribute__((unused))) {
     strlcpy(msg->title, "WARNING", msg->titleLength);
     strlcpy(msg->msg, "Unknown token", msg->msgLength);
 }
 
 // Helper function that returns the enum corresponding to the screen that should be displayed.
 static screens_t get_screen(ethQueryContractUI_t *msg,
-                            <Plugin Name>_parameters_t *context __attribute__((unused))) {
+                            cowswap_parameters_t *context __attribute__((unused))) {
     uint8_t index = msg->screenIndex;
 
 // Remove if not used from here
@@ -117,7 +117,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
 
 void handle_query_contract_ui(void *parameters) {
     ethQueryContractUI_t *msg = (ethQueryContractUI_t *) parameters;
-    <Plugin Name>_parameters_t *context = (<Plugin Name>_parameters_t *) msg->pluginContext;
+    cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
     memset(msg->title, 0, msg->titleLength);
     memset(msg->msg, 0, msg->msgLength);
     msg->result = ETH_PLUGIN_RESULT_OK;

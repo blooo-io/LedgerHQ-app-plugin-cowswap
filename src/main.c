@@ -24,7 +24,7 @@
 
 #include "glyphs.h"
 
-#include "<Plugin Name>_plugin.h"
+#include "cowswap_plugin.h"
 
 void dispatch_plugin_calls(int message, void *parameters) {
     PRINTF("Handling message %d\n", message);
