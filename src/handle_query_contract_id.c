@@ -2,13 +2,13 @@
 
 void handle_query_contract_id(void *parameters) {
     ethQueryContractID_t *msg = (ethQueryContractID_t *) parameters;
-   cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
+    cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
 
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
 
     switch (context->selectorIndex) {
-        case <Plugin Function Name>:
-            strlcpy(msg->version, "First Method", msg->versionLength);
+        case DEPOSIT:
+            strlcpy(msg->version, "Deposit", msg->versionLength);
             break;
         default:
             PRINTF("Selector Index :%d not supported\n", context->selectorIndex);

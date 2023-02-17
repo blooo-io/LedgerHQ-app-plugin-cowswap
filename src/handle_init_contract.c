@@ -35,8 +35,8 @@ void handle_init_contract(void *parameters) {
 
     // Set `next_param` to be the first field we expect to parse.
     switch (context->selectorIndex) {
-        case <Plugin Function Name>:
-            context->next_param = AMOUNT_SENT;
+        case DEPOSIT:
+            context->next_param = NONE;
             break;
         default:
             PRINTF("Missing selectorIndex\n");

@@ -3,7 +3,7 @@
 // Set UI for the "Send" screen.
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case <Plugin Function Name>:
+        case DEPOSIT:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         default:
@@ -30,7 +30,7 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case <Plugin Function Name>:
+        case <Plugin Function>:
             strlcpy(msg->title, "Receive", msg->titleLength);
             break;
         default:
@@ -76,39 +76,41 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
 
     switch (index) {
         case 0:
-            if (both_tokens_found) {
-                return SEND_SCREEN;
-            } else if (both_tokens_not_found) {
-                return WARN_SCREEN;
-            } else if (token_sent_found) {
-                return SEND_SCREEN;
-            } else if (token_received_found) {
-                return WARN_SCREEN;
-            }
-        case 1:
-            if (both_tokens_found) {
-                return RECEIVE_SCREEN;
-            } else if (both_tokens_not_found) {
-                return SEND_SCREEN;
-            } else if (token_sent_found) {
-                return WARN_SCREEN;
-            } else if (token_received_found) {
-                return SEND_SCREEN;
-            }
-        case 2:
-            if (both_tokens_found) {
-                return ERROR;
-            } else if (both_tokens_not_found) {
-                return WARN_SCREEN;
-            } else {
-                return RECEIVE_SCREEN;
-            }
-        case 3:
-            if (both_tokens_not_found) {
-                return RECEIVE_SCREEN;
-            } else {
-                return ERROR;
-            }
+            return SEND_SCREEN;
+        // case 0:
+        //     if (both_tokens_found) {
+        //         return SEND_SCREEN;
+        //     } else if (both_tokens_not_found) {
+        //         return WARN_SCREEN;
+        //     } else if (token_sent_found) {
+        //         return SEND_SCREEN;
+        //     } else if (token_received_found) {
+        //         return WARN_SCREEN;
+        //     }
+        // case 1:
+        //     if (both_tokens_found) {
+        //         return RECEIVE_SCREEN;
+        //     } else if (both_tokens_not_found) {
+        //         return SEND_SCREEN;
+        //     } else if (token_sent_found) {
+        //         return WARN_SCREEN;
+        //     } else if (token_received_found) {
+        //         return SEND_SCREEN;
+        //     }
+        // case 2:
+        //     if (both_tokens_found) {
+        //         return ERROR;
+        //     } else if (both_tokens_not_found) {
+        //         return WARN_SCREEN;
+        //     } else {
+        //         return RECEIVE_SCREEN;
+        //     }
+        // case 3:
+        //     if (both_tokens_not_found) {
+        //         return RECEIVE_SCREEN;
+        //     } else {
+        //         return ERROR;
+        //     }
         default:
             return ERROR;
     }

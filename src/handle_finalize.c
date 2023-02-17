@@ -13,6 +13,7 @@ static void received_network_token(cowswap_parameters_t *context) {
 void handle_finalize(void *parameters) {
     ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
     cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
+    
     if (context->valid) {
         msg->numScreens = 2;
         if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {

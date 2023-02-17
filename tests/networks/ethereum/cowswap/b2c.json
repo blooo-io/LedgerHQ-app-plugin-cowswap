@@ -2,12 +2,12 @@
   "chainId": 1,
   "contracts": [
     {
-      "address": "0x0000000000000000000000",
-      "contractName": "",
+      "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "contractName": "WETH9",
       "selectors": {
-        "0x00000000": {
+        "0xd0e30db0": {
           "erc20OfInterest": [],
-          "method": "",
+          "method": "Deposit",
           "plugin": "cowswap"
         }
       }

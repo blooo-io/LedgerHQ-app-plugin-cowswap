@@ -1,20 +1,21 @@
 import { processTest, populateTransaction } from "../test.fixture";
 
-const contractName = "CoW Swap"; // <= Name of the smart contract
+const contractName = "WETH9"; // <= Name of the smart contract
 
-const testLabel = "ethereum_first_method"; // <= Name of the test
-const testDirSuffix = "first_method"; // <= directory to compare device snapshots to
+const testLabel = "ethereum_deposit_method"; // <= Name of the test
+const testDirSuffix = "deposit_method"; // <= directory to compare device snapshots to
 const testNetwork = "ethereum";
 const signedPlugin = false;
 
-const contractAddr = "0x000"; // <= Address of the smart contract
+const contractAddr = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"; // <= Address of the smart contract
 const chainID = 1;
 
-// From : https://etherscan.io/tx/0xba5c36b3f94cc5c36177f402d91042336bbb02a47637b8135643a97451ca36bb
-const inputData = "0x00";
+// From : https://etherscan.io/tx/0x81e1284b2f4ff02a3646f22f669da05b3030eca8ac8069a155368e151dbe9196
+const inputData = "0xd0e30db0";
 
 // Create serializedTx and remove the "0x" prefix
-const serializedTx = populateTransaction(contractAddr, inputData, chainID);
+const value = "20";
+const serializedTx = populateTransaction(contractAddr, inputData, chainID, value);
 
 const devices = [
   {

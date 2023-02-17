@@ -28,6 +28,7 @@
 
 void dispatch_plugin_calls(int message, void *parameters) {
     PRINTF("Handling message %d\n", message);
+    PRINTF("Handling parameters %d\n", parameters);
     switch (message) {
         case ETH_PLUGIN_INIT_CONTRACT:
             handle_init_contract(parameters);

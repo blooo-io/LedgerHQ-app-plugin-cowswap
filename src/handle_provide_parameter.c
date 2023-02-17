@@ -6,14 +6,14 @@ static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_paramet
     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 }
 
-static void handle_plugin_generic(ethPluginProvideParameter_t *msg,
-                                  cowswap_parameters_t *context) {
+static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    memcpy(context->amount_sent, msg->pluginSharedRO->txContent->value.value , msg->pluginSharedRO->txContent->value.length);
+}
+
+static void handle_deposit(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case AMOUNT_SENT:
-            handle_amount_sent(msg, context);
-            context->next_param = NONE;
-            break;
         case NONE:
+            handle_value_sent(msg, context);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -44,8 +44,8 @@ void handle_provide_parameter(void *parameters) {
         context->offset = 0;
 // To here
         switch (context->selectorIndex) {
-            case <Plugin Function Name>:
-                handle_plugin_generic(msg, context);
+            case DEPOSIT:
+                handle_deposit(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);
