@@ -13,26 +13,26 @@ const chainID = 1;
 // From : https://etherscan.io/tx/0x81e1284b2f4ff02a3646f22f669da05b3030eca8ac8069a155368e151dbe9196
 const inputData = "0xd0e30db0";
 
-// Create serializedTx and remove the "0x" prefix
 const value = "20";
+// Create serializedTx and remove the "0x" prefix
 const serializedTx = populateTransaction(contractAddr, inputData, chainID, value);
-
+console.log(serializedTx);
 const devices = [
   {
     name: "nanos",
     label: "Nano S",
-    steps: 7, // <= Define the number of steps for this test case and this device
+    steps: 3, // <= Define the number of steps for this test case and this device
   },
-  {
-    name: "nanox",
-    label: "Nano X",
-    steps: 5, // <= Define the number of steps for this test case and this device
-  },
-  {
-    name: "nanosp",
-    label: "Nano S+",
-    steps: 5, // <= Define the number of steps for this test case and this device
-  },
+  // {
+  //   name: "nanox",
+  //   label: "Nano X",
+  //   steps: 5, // <= Define the number of steps for this test case and this device
+  // },
+  // {
+  //   name: "nanosp",
+  //   label: "Nano S+",
+  //   steps: 5, // <= Define the number of steps for this test case and this device
+  // },
 ];
 
 devices.forEach((device) =>

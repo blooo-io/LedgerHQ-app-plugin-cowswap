@@ -15,7 +15,7 @@ const simOptions = {
   logging: true,
   X11: false,
   startDelay: 15000,
-  startText: "is ready",
+  startText: "Ready",
 };
 
 const Resolve = require("path").resolve;
@@ -159,7 +159,6 @@ async function processTransaction(eth, sim, steps, label, rawTxHex, srlTx = "") 
     });
 
   let tx = eth.signTransaction("44'/60'/0'/0/0", serializedTx, resolution);
-
   await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot(), transactionUploadDelay);
 
   await sim.navigateAndCompareSnapshots(".", label, [steps, 0]);

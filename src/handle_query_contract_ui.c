@@ -4,6 +4,7 @@
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case DEPOSIT:
+        PRINTF("AMOUNT SENT1: %s\n", msg->msg);
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         default:
@@ -17,13 +18,25 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
         strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
     }
 
-    // Convert to string.
-    amountToString(context->amount_sent,
+    // handle which data to return
+    switch(context->selectorIndex) {
+        case DEPOSIT:
+            amountToString(msg->pluginSharedRO->txContent->value.value,
+                    msg->pluginSharedRO->txContent->value.length,
+                    WEI_TO_ETHER,
+                    context->ticker_sent,
+                    msg->msg,
+                    msg->msgLength);
+            break;
+        default:
+            amountToString(context->amount_sent,
                    INT256_LENGTH,
                    context->decimals_sent,
                    context->ticker_sent,
                    msg->msg,
                    msg->msgLength);
+            return;
+    }
     PRINTF("AMOUNT SENT: %s\n", msg->msg);
 }
 
@@ -126,7 +139,6 @@ void handle_query_contract_ui(void *parameters) {
 
     screens_t screen = get_screen(msg, context);
     switch (screen) {
-        PRINTF("screen %s", screen);
         case SEND_SCREEN:
             set_send_ui(msg, context);
             break;
