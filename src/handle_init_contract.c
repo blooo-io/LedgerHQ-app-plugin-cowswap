@@ -3,12 +3,12 @@
 // Called once to init.
 void handle_init_contract(void *parameters) {
     ethPluginInitContract_t *msg = (ethPluginInitContract_t *) parameters;
-
+    PRINTF("int %s\n", msg->interfaceVersion);
     if (msg->interfaceVersion != ETH_PLUGIN_INTERFACE_VERSION_LATEST) {
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
     }
-
+    PRINTF("l %s\n", msg->pluginContextLength);
     if (msg->pluginContextLength < sizeof(cowswap_parameters_t)) {
         msg->result = ETH_PLUGIN_RESULT_ERROR;
         return;
@@ -35,6 +35,7 @@ void handle_init_contract(void *parameters) {
 
     // Set `next_param` to be the first field we expect to parse.
     switch (context->selectorIndex) {
+        PRINTF("switch0 %d\n", context->selectorIndex);
         case DEPOSIT:
             context->next_param = NONE;
             break;

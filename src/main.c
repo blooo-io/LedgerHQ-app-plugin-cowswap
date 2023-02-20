@@ -28,7 +28,6 @@
 
 void dispatch_plugin_calls(int message, void *parameters) {
     PRINTF("Handling message %d\n", message);
-    PRINTF("Handling parameters %d\n", parameters);
     switch (message) {
         case ETH_PLUGIN_INIT_CONTRACT:
             PRINTF("SLI1 %d\n", message);
@@ -96,7 +95,6 @@ __attribute__((section(".boot"))) int main(int arg0) {
             } else {
                 // regular call from ethereum
                 unsigned int *args = (unsigned int *) arg0;
-
                 if (args[0] != ETH_PLUGIN_CHECK_PRESENCE) {
                     dispatch_plugin_calls(args[0], (void *) args[1]);
                 }

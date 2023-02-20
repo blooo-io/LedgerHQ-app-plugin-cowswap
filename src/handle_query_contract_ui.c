@@ -126,7 +126,7 @@ void handle_query_contract_ui(void *parameters) {
 
     screens_t screen = get_screen(msg, context);
     switch (screen) {
-        PRINTF("screen %s", screen)
+        PRINTF("screen %s", screen);
         case SEND_SCREEN:
             set_send_ui(msg, context);
             break;

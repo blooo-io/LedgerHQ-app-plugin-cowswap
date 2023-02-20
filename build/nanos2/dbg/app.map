@@ -1,0 +1,503 @@
+     VMA      LMA     Size Align Out     In      Symbol
+       0        0        0     1 PAGE_SIZE = 512
+       0        0        0     1 STACK_SIZE = 1500
+       0        0        0     1 END_STACK = ORIGIN ( SRAM ) + LENGTH ( SRAM )
+c0de0000 c0de0000     1200     4 .text
+c0de0000 c0de0000        0     1         _text = .
+c0de0000 c0de0000        0     1         _nvram_start = .
+c0de0000 c0de0000       c0     4         build/nanos2/obj/main.o:(.boot)
+c0de0000 c0de0000        0     1                 $t.5
+c0de0001 c0de0001       c0     1                 main
+c0de00b8 c0de00b8        0     1                 $d.6
+c0de00c0 c0de00c0       e8     4         build/nanos2/obj/eth_internals.o:(.text.adjustDecimals)
+c0de00c0 c0de00c0        0     1                 $t.6
+c0de00c1 c0de00c1       e8     1                 adjustDecimals
+c0de01a8 c0de01a8       f8     4         build/nanos2/obj/eth_internals.o:(.text.uint256_to_decimal)
+c0de01a8 c0de01a8        0     1                 $t.7
+c0de01a9 c0de01a9       f8     1                 uint256_to_decimal
+c0de0298 c0de0298        0     1                 $d.8
+c0de02a0 c0de02a0       7e     2         build/nanos2/obj/eth_internals.o:(.text.amountToString)
+c0de02a0 c0de02a0        0     1                 $t.9
+c0de02a1 c0de02a1       7e     1                 amountToString
+c0de0320 c0de0320      11c     4         build/nanos2/obj/handle_finalize.o:(.text.handle_finalize)
+c0de0320 c0de0320        0     1                 $t.0
+c0de0321 c0de0321      11c     1                 handle_finalize
+c0de0410 c0de0410        0     1                 $d.1
+c0de043c c0de043c       bc     4         build/nanos2/obj/handle_init_contract.o:(.text.handle_init_contract)
+c0de043c c0de043c        0     1                 $t.0
+c0de043d c0de043d       bc     1                 handle_init_contract
+c0de04e8 c0de04e8        0     1                 $d.1
+c0de04f8 c0de04f8       c0     4         build/nanos2/obj/handle_provide_parameter.o:(.text.handle_provide_parameter)
+c0de04f8 c0de04f8        0     1                 $t.0
+c0de04f9 c0de04f9       c0     1                 handle_provide_parameter
+c0de05a0 c0de05a0        0     1                 $d.1
+c0de05b8 c0de05b8      11c     4         build/nanos2/obj/handle_provide_token.o:(.text.handle_provide_token)
+c0de05b8 c0de05b8        0     1                 $t.0
+c0de05b9 c0de05b9      11c     1                 handle_provide_token
+c0de06b8 c0de06b8        0     1                 $d.1
+c0de06d4 c0de06d4       44     4         build/nanos2/obj/handle_query_contract_id.o:(.text.handle_query_contract_id)
+c0de06d4 c0de06d4        0     1                 $t.0
+c0de06d5 c0de06d5       44     1                 handle_query_contract_id
+c0de070c c0de070c        0     1                 $d.1
+c0de0718 c0de0718       c0     4         build/nanos2/obj/handle_query_contract_ui.o:(.text.handle_query_contract_ui)
+c0de0718 c0de0718        0     1                 $t.0
+c0de0719 c0de0719       c0     1                 handle_query_contract_ui
+c0de07c0 c0de07c0        0     1                 $d.1
+c0de07d8 c0de07d8       f0     4         build/nanos2/obj/main.o:(.text.dispatch_plugin_calls)
+c0de07d8 c0de07d8        0     1                 $t.0
+c0de07d9 c0de07d9       f0     1                 dispatch_plugin_calls
+c0de08a8 c0de08a8        0     1                 $d.1
+c0de08c8 c0de08c8        6     2         build/nanos2/obj/os.o:(.text.os_boot)
+c0de08c8 c0de08c8        0     1                 $t.0
+c0de08c9 c0de08c9        6     1                 os_boot
+c0de08d0 c0de08d0       1c     4         build/nanos2/obj/os.o:(.text.os_longjmp)
+c0de08d0 c0de08d0        0     1                 $t.3
+c0de08d1 c0de08d1       1c     1                 os_longjmp
+c0de08e8 c0de08e8        0     1                 $d.4
+c0de08ec c0de08ec       2c     2         build/nanos2/obj/os_io_seproxyhal.o:(.text.mcu_usb_prints)
+c0de08ec c0de08ec        0     1                 $t.50
+c0de08ed c0de08ed       2c     1                 mcu_usb_prints
+c0de0918 c0de0918      330     4         build/nanos2/obj/os_printf.o:(.text.mcu_usb_printf)
+c0de0918 c0de0918        0     1                 $t.0
+c0de0919 c0de0919      330     1                 mcu_usb_printf
+c0de0919 c0de0919      330     1                 screen_printf
+c0de0c28 c0de0c28        0     1                 $d.1
+c0de0c48 c0de0c48       10     4         build/nanos2/obj/pic.o:(.text.pic_internal)
+c0de0c48 c0de0c48        0     1                 $t.0
+c0de0c49 c0de0c49        c     1                 pic_internal
+c0de0c54 c0de0c54        0     1                 $d.2
+c0de0c58 c0de0c58       3c     4         build/nanos2/obj/pic.o:(.text.pic)
+c0de0c58 c0de0c58        0     1                 $t.1
+c0de0c59 c0de0c59       2c     1                 pic
+c0de0c84 c0de0c84        0     1                 $d.3
+c0de0c94 c0de0c94        e     2         build/nanos2/obj/svc_call.o:(.text)
+c0de0c94 c0de0c94        0     1                 $t
+c0de0c95 c0de0c95        0     1                 SVC_Call
+c0de0c9c c0de0c9c        0     1                 exception
+c0de0ca2 c0de0ca2       16     2         build/nanos2/obj/syscalls.o:(.text.get_api_level)
+c0de0ca2 c0de0ca2        0     1                 $t.0
+c0de0ca3 c0de0ca3       16     1                 get_api_level
+c0de0cb8 c0de0cb8       1c     4         build/nanos2/obj/syscalls.o:(.text.os_lib_call)
+c0de0cb8 c0de0cb8        0     1                 $t.221
+c0de0cb9 c0de0cb9       1c     1                 os_lib_call
+c0de0cd0 c0de0cd0        0     1                 $d.222
+c0de0cd4 c0de0cd4       14     2         build/nanos2/obj/syscalls.o:(.text.os_lib_end)
+c0de0cd4 c0de0cd4        0     1                 $t.223
+c0de0cd5 c0de0cd5       14     1                 os_lib_end
+c0de0ce8 c0de0ce8       1c     4         build/nanos2/obj/syscalls.o:(.text.os_sched_exit)
+c0de0ce8 c0de0ce8        0     1                 $t.251
+c0de0ce9 c0de0ce9       1c     1                 os_sched_exit
+c0de0d00 c0de0d00        0     1                 $d.252
+c0de0d04 c0de0d04       18     4         build/nanos2/obj/syscalls.o:(.text.io_seph_send)
+c0de0d04 c0de0d04        0     1                 $t.259
+c0de0d05 c0de0d05       18     1                 io_seph_send
+c0de0d18 c0de0d18        0     1                 $d.260
+c0de0d1c c0de0d1c       14     2         build/nanos2/obj/syscalls.o:(.text.try_context_get)
+c0de0d1c c0de0d1c        0     1                 $t.268
+c0de0d1d c0de0d1d       14     1                 try_context_get
+c0de0d30 c0de0d30       1c     4         build/nanos2/obj/syscalls.o:(.text.try_context_set)
+c0de0d30 c0de0d30        0     1                 $t.269
+c0de0d31 c0de0d31       1c     1                 try_context_set
+c0de0d48 c0de0d48        0     1                 $d.270
+c0de0d4c c0de0d4c        6     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memclr.o):(.text.__aeabi_memclr)
+c0de0d4c c0de0d4c        0     1                 $t
+c0de0d4d c0de0d4d        6     1                 __aeabi_memclr
+c0de0d4d c0de0d4d        6     1                 __aeabi_memclr8
+c0de0d4d c0de0d4d        6     1                 __aeabi_memclr4
+c0de0d52 c0de0d52        4     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memcpy.o):(.text.__aeabi_memcpy)
+c0de0d52 c0de0d52        0     1                 $t
+c0de0d53 c0de0d53        4     1                 __aeabi_memcpy
+c0de0d53 c0de0d53        4     1                 __aeabi_memcpy8
+c0de0d53 c0de0d53        4     1                 __aeabi_memcpy4
+c0de0d56 c0de0d56        4     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memmove.o):(.text.__aeabi_memmove)
+c0de0d56 c0de0d56        0     1                 $t
+c0de0d57 c0de0d57        4     1                 __aeabi_memmove
+c0de0d57 c0de0d57        4     1                 __aeabi_memmove8
+c0de0d57 c0de0d57        4     1                 __aeabi_memmove4
+c0de0d5a c0de0d5a        a     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memset.o):(.text.__aeabi_memset)
+c0de0d5a c0de0d5a        0     1                 $t
+c0de0d5b c0de0d5b        a     1                 __aeabi_memset
+c0de0d5b c0de0d5b        a     1                 __aeabi_memset8
+c0de0d5b c0de0d5b        a     1                 __aeabi_memset4
+c0de0d64 c0de0d64       20     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memcmp.o):(.text.memcmp)
+c0de0d64 c0de0d64        0     1                 $t
+c0de0d65 c0de0d65       20     1                 memcmp
+c0de0d84 c0de0d84       1a     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memcpy-stub.o):(.text.memcpy)
+c0de0d84 c0de0d84        0     1                 $t
+c0de0d85 c0de0d85       1a     1                 memcpy
+c0de0d9e c0de0d9e       34     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memmove.o):(.text.memmove)
+c0de0d9e c0de0d9e        0     1                 $t
+c0de0d9f c0de0d9f       34     1                 memmove
+c0de0dd2 c0de0dd2       10     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memset.o):(.text.memset)
+c0de0dd2 c0de0dd2        0     1                 $t
+c0de0dd3 c0de0dd3       10     1                 memset
+c0de0de4 c0de0de4       1c     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-setjmp.o):(.text)
+c0de0de4 c0de0de4        0     1                 $t
+c0de0de5 c0de0de5        c     1                 setjmp
+c0de0df1 c0de0df1        e     1                 longjmp
+c0de0e00 c0de0e00       2a     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-strlcpy.o):(.text.strlcpy)
+c0de0e00 c0de0e00        0     1                 $t
+c0de0e01 c0de0e01       2a     1                 strlcpy
+c0de0e2a c0de0e2a       18     2         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-strnlen.o):(.text.strnlen)
+c0de0e2a c0de0e2a        0     1                 $t
+c0de0e2b c0de0e2b       18     1                 strnlen
+c0de0e42 c0de0e42        4     1         build/nanos2/obj/contract.o:(.rodata.COWSWAP_DEPOSIT_SELECTOR)
+c0de0e42 c0de0e42        4     1                 COWSWAP_DEPOSIT_SELECTOR
+c0de0e48 c0de0e48        4     4         build/nanos2/obj/contract.o:(.rodata.COWSWAP_SELECTORS)
+c0de0e48 c0de0e48        4     1                 COWSWAP_SELECTORS
+c0de0e4c c0de0e4c       14     1         build/nanos2/obj/contract.o:(.rodata.PLUGIN_ETH_ADDRESS)
+c0de0e4c c0de0e4c       14     1                 PLUGIN_ETH_ADDRESS
+c0de0e60 c0de0e60      24e     1         <internal>:(.text)
+c0de10ae c0de10ae       10     1         build/nanos2/obj/os_printf.o:(.rodata.g_pcHex)
+c0de10ae c0de10ae       10     1                 g_pcHex
+c0de10be c0de10be       10     1         build/nanos2/obj/os_printf.o:(.rodata.g_pcHex_cap)
+c0de10be c0de10be       10     1                 g_pcHex_cap
+c0de10ce c0de10ce       14     1         build/nanos2/obj/contract.o:(.rodata.NULL_ETH_ADDRESS)
+c0de10ce c0de10ce       14     1                 NULL_ETH_ADDRESS
+c0de10e2 c0de10e2        2     1         . = ALIGN ( 4 )
+c0de10e4 c0de10e4        0     1         _etext = .
+c0de10e4 c0de10e4      11c     1         . = ALIGN ( PAGE_SIZE )
+c0de1200 c0de1200        0     1         _nvram_data = .
+c0de1200 c0de1200        0     1         . = ALIGN ( PAGE_SIZE )
+c0de1200 c0de1200        0     1         _envram_data = .
+c0de1200 c0de1200        0     1         _install_parameters = .
+c0de1200 c0de1200        0     1         _nvram_end = .
+d0000000 d0000000        0     1 .data
+d0000000 d0000000        0     1         . = ALIGN ( 4 )
+d0000000 d0000000        0     1         _data = .
+d0000000 d0000000        0     1         _edata = .
+da7a0000 da7a0000      5e0     1 .bss
+da7a0000 da7a0000        0     1         _bss = .
+da7a0000 da7a0000        0     1         _ebss = .
+da7a0000 da7a0000        0     1         . = ALIGN ( 4 )
+da7a0000 da7a0000        0     1         app_stack_canary = .
+da7a0000 da7a0000        4     1         . += 4
+da7a0004 da7a0004        0     1         _stack_validation = .
+da7a0004 da7a0004      5dc     1         . = _stack_validation + STACK_SIZE
+da7a05e0 da7a05e0        0     1         _stack = ABSOLUTE ( END_STACK ) - STACK_SIZE
+da7a05e0 da7a05e0        0     1         _estack = ABSOLUTE ( END_STACK )
+d0000000 d0000000       10     4 DEBUG
+d0000000 d0000000       10     4         <internal>:(.ARM.exidx)
+       0        0       30     1 .comment
+       0        0       30     1         <internal>:(.comment)
+       0        0      4b0     8 .debug_aranges
+       0        0      450     8         build/nanos2/obj/cx_stubs.o:(.debug_aranges)
+     450      450       20     8         build/nanos2/obj/stack_protector_init.o:(.debug_aranges)
+     470      470       20     8         build/nanos2/obj/svc_call.o:(.debug_aranges)
+     490      490       20     8         build/nanos2/obj/svc_cx_call.o:(.debug_aranges)
+       0        0    12839     1 .debug_info
+       0        0      b96     1         build/nanos2/obj/bagl.o:(.debug_info)
+     b96      b96      278     1         build/nanos2/obj/bagl_fonts.o:(.debug_info)
+     e0e      e0e       ba     1         build/nanos2/obj/contract.o:(.debug_info)
+     ec8      ec8       22     1         build/nanos2/obj/cx_stubs.o:(.debug_info)
+     eea      eea      11e     1         build/nanos2/obj/debug_write.o:(.debug_info)
+    1008     1008      be1     1         build/nanos2/obj/eth_internals.o:(.debug_info)
+    1be9     1be9      3f1     1         build/nanos2/obj/glyphs.o:(.debug_info)
+    1fda     1fda      72c     1         build/nanos2/obj/handle_finalize.o:(.debug_info)
+    2706     2706      635     1         build/nanos2/obj/handle_init_contract.o:(.debug_info)
+    2d3b     2d3b      6e8     1         build/nanos2/obj/handle_provide_parameter.o:(.debug_info)
+    3423     3423      6d9     1         build/nanos2/obj/handle_provide_token.o:(.debug_info)
+    3afc     3afc      5f3     1         build/nanos2/obj/handle_query_contract_id.o:(.debug_info)
+    40ef     40ef      7df     1         build/nanos2/obj/handle_query_contract_ui.o:(.debug_info)
+    48ce     48ce      392     1         build/nanos2/obj/ledger_protocol.o:(.debug_info)
+    4c60     4c60      839     1         build/nanos2/obj/main.o:(.debug_info)
+    5499     5499      7c2     1         build/nanos2/obj/os.o:(.debug_info)
+    5c5b     5c5b     14fd     1         build/nanos2/obj/os_io_seproxyhal.o:(.debug_info)
+    7158     7158       56     1         build/nanos2/obj/os_io_task.o:(.debug_info)
+    71ae     71ae      2b9     1         build/nanos2/obj/os_io_usb.o:(.debug_info)
+    7467     7467      3a2     1         build/nanos2/obj/os_printf.o:(.debug_info)
+    7809     7809       8c     1         build/nanos2/obj/pic.o:(.debug_info)
+    7895     7895      d7d     1         build/nanos2/obj/printf.o:(.debug_info)
+    8612     8612       26     1         build/nanos2/obj/stack_protector_init.o:(.debug_info)
+    8638     8638       26     1         build/nanos2/obj/svc_call.o:(.debug_info)
+    865e     865e       26     1         build/nanos2/obj/svc_cx_call.o:(.debug_info)
+    8684     8684     339e     1         build/nanos2/obj/syscalls.o:(.debug_info)
+    ba22     ba22      8e9     1         build/nanos2/obj/usbd_conf.o:(.debug_info)
+    c30b     c30b      a9e     1         build/nanos2/obj/usbd_core.o:(.debug_info)
+    cda9     cda9      b0d     1         build/nanos2/obj/usbd_ctlreq.o:(.debug_info)
+    d8b6     d8b6      612     1         build/nanos2/obj/usbd_hid.o:(.debug_info)
+    dec8     dec8      a3d     1         build/nanos2/obj/usbd_impl.o:(.debug_info)
+    e905     e905      6ac     1         build/nanos2/obj/usbd_ioreq.o:(.debug_info)
+    efb1     efb1      4bc     1         build/nanos2/obj/ux_flow_engine.o:(.debug_info)
+    f46d     f46d      21c     1         build/nanos2/obj/ux_layout_bb.o:(.debug_info)
+    f689     f689      25f     1         build/nanos2/obj/ux_layout_bn.o:(.debug_info)
+    f8e8     f8e8      1db     1         build/nanos2/obj/ux_layout_bnn.o:(.debug_info)
+    fac3     fac3      1db     1         build/nanos2/obj/ux_layout_bnnn.o:(.debug_info)
+    fc9e     fc9e      25f     1         build/nanos2/obj/ux_layout_nn.o:(.debug_info)
+    fefd     fefd      250     1         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_info)
+   1014d    1014d      1db     1         build/nanos2/obj/ux_layout_nnn.o:(.debug_info)
+   10328    10328      1db     1         build/nanos2/obj/ux_layout_nnnn.o:(.debug_info)
+   10503    10503      938     1         build/nanos2/obj/ux_layout_paging.o:(.debug_info)
+   10e3b    10e3b      27d     1         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_info)
+   110b8    110b8      2be     1         build/nanos2/obj/ux_layout_pb.o:(.debug_info)
+   11376    11376      30b     1         build/nanos2/obj/ux_layout_pbb.o:(.debug_info)
+   11681    11681      25f     1         build/nanos2/obj/ux_layout_pbn.o:(.debug_info)
+   118e0    118e0      1db     1         build/nanos2/obj/ux_layout_pn.o:(.debug_info)
+   11abb    11abb      25f     1         build/nanos2/obj/ux_layout_pnn.o:(.debug_info)
+   11d1a    11d1a      24f     1         build/nanos2/obj/ux_layout_utils.o:(.debug_info)
+   11f69    11f69      1e0     1         build/nanos2/obj/ux_legacy.o:(.debug_info)
+   12149    12149      244     1         build/nanos2/obj/ux_menulist.o:(.debug_info)
+   1238d    1238d      4ac     1         build/nanos2/obj/ux_stack.o:(.debug_info)
+       0        0     41b1     1 .debug_abbrev
+       0        0      270     1         build/nanos2/obj/bagl.o:(.debug_abbrev)
+     270      270       96     1         build/nanos2/obj/bagl_fonts.o:(.debug_abbrev)
+     306      306       71     1         build/nanos2/obj/contract.o:(.debug_abbrev)
+     377      377       12     1         build/nanos2/obj/cx_stubs.o:(.debug_abbrev)
+     389      389      116     1         build/nanos2/obj/debug_write.o:(.debug_abbrev)
+     49f      49f      1e8     1         build/nanos2/obj/eth_internals.o:(.debug_abbrev)
+     687      687       98     1         build/nanos2/obj/glyphs.o:(.debug_abbrev)
+     71f      71f      165     1         build/nanos2/obj/handle_finalize.o:(.debug_abbrev)
+     884      884      106     1         build/nanos2/obj/handle_init_contract.o:(.debug_abbrev)
+     98a      98a      187     1         build/nanos2/obj/handle_provide_parameter.o:(.debug_abbrev)
+     b11      b11      149     1         build/nanos2/obj/handle_provide_token.o:(.debug_abbrev)
+     c5a      c5a      106     1         build/nanos2/obj/handle_query_contract_id.o:(.debug_abbrev)
+     d60      d60      19d     1         build/nanos2/obj/handle_query_contract_ui.o:(.debug_abbrev)
+     efd      efd      17b     1         build/nanos2/obj/ledger_protocol.o:(.debug_abbrev)
+    1078     1078      1f5     1         build/nanos2/obj/main.o:(.debug_abbrev)
+    126d     126d      220     1         build/nanos2/obj/os.o:(.debug_abbrev)
+    148d     148d      35e     1         build/nanos2/obj/os_io_seproxyhal.o:(.debug_abbrev)
+    17eb     17eb       5d     1         build/nanos2/obj/os_io_task.o:(.debug_abbrev)
+    1848     1848      18a     1         build/nanos2/obj/os_io_usb.o:(.debug_abbrev)
+    19d2     19d2      156     1         build/nanos2/obj/os_printf.o:(.debug_abbrev)
+    1b28     1b28       7d     1         build/nanos2/obj/pic.o:(.debug_abbrev)
+    1ba5     1ba5      263     1         build/nanos2/obj/printf.o:(.debug_abbrev)
+    1e08     1e08       14     1         build/nanos2/obj/stack_protector_init.o:(.debug_abbrev)
+    1e1c     1e1c       14     1         build/nanos2/obj/svc_call.o:(.debug_abbrev)
+    1e30     1e30       14     1         build/nanos2/obj/svc_cx_call.o:(.debug_abbrev)
+    1e44     1e44      1a7     1         build/nanos2/obj/syscalls.o:(.debug_abbrev)
+    1feb     1feb      157     1         build/nanos2/obj/usbd_conf.o:(.debug_abbrev)
+    2142     2142      1f6     1         build/nanos2/obj/usbd_core.o:(.debug_abbrev)
+    2338     2338      255     1         build/nanos2/obj/usbd_ctlreq.o:(.debug_abbrev)
+    258d     258d      10e     1         build/nanos2/obj/usbd_hid.o:(.debug_abbrev)
+    269b     269b      1c8     1         build/nanos2/obj/usbd_impl.o:(.debug_abbrev)
+    2863     2863       f0     1         build/nanos2/obj/usbd_ioreq.o:(.debug_abbrev)
+    2953     2953      1ec     1         build/nanos2/obj/ux_flow_engine.o:(.debug_abbrev)
+    2b3f     2b3f      141     1         build/nanos2/obj/ux_layout_bb.o:(.debug_abbrev)
+    2c80     2c80       fc     1         build/nanos2/obj/ux_layout_bn.o:(.debug_abbrev)
+    2d7c     2d7c       f2     1         build/nanos2/obj/ux_layout_bnn.o:(.debug_abbrev)
+    2e6e     2e6e       f2     1         build/nanos2/obj/ux_layout_bnnn.o:(.debug_abbrev)
+    2f60     2f60       fc     1         build/nanos2/obj/ux_layout_nn.o:(.debug_abbrev)
+    305c     305c      120     1         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_abbrev)
+    317c     317c       f2     1         build/nanos2/obj/ux_layout_nnn.o:(.debug_abbrev)
+    326e     326e       f2     1         build/nanos2/obj/ux_layout_nnnn.o:(.debug_abbrev)
+    3360     3360      2c7     1         build/nanos2/obj/ux_layout_paging.o:(.debug_abbrev)
+    3627     3627      124     1         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_abbrev)
+    374b     374b      120     1         build/nanos2/obj/ux_layout_pb.o:(.debug_abbrev)
+    386b     386b      16f     1         build/nanos2/obj/ux_layout_pbb.o:(.debug_abbrev)
+    39da     39da       fc     1         build/nanos2/obj/ux_layout_pbn.o:(.debug_abbrev)
+    3ad6     3ad6       f2     1         build/nanos2/obj/ux_layout_pn.o:(.debug_abbrev)
+    3bc8     3bc8       fc     1         build/nanos2/obj/ux_layout_pnn.o:(.debug_abbrev)
+    3cc4     3cc4      110     1         build/nanos2/obj/ux_layout_utils.o:(.debug_abbrev)
+    3dd4     3dd4       ca     1         build/nanos2/obj/ux_legacy.o:(.debug_abbrev)
+    3e9e     3e9e      12e     1         build/nanos2/obj/ux_menulist.o:(.debug_abbrev)
+    3fcc     3fcc      1e5     1         build/nanos2/obj/ux_stack.o:(.debug_abbrev)
+       0        0     b714     1 .debug_line
+       0        0      cd4     1         build/nanos2/obj/bagl.o:(.debug_line)
+     cd4      cd4      124     1         build/nanos2/obj/bagl_fonts.o:(.debug_line)
+     df8      df8       93     1         build/nanos2/obj/contract.o:(.debug_line)
+     e8b      e8b      88e     1         build/nanos2/obj/cx_stubs.o:(.debug_line)
+    1719     1719       ca     1         build/nanos2/obj/debug_write.o:(.debug_line)
+    17e3     17e3      694     1         build/nanos2/obj/eth_internals.o:(.debug_line)
+    1e77     1e77       74     1         build/nanos2/obj/glyphs.o:(.debug_line)
+    1eeb     1eeb      283     1         build/nanos2/obj/handle_finalize.o:(.debug_line)
+    216e     216e      241     1         build/nanos2/obj/handle_init_contract.o:(.debug_line)
+    23af     23af      26e     1         build/nanos2/obj/handle_provide_parameter.o:(.debug_line)
+    261d     261d      279     1         build/nanos2/obj/handle_provide_token.o:(.debug_line)
+    2896     2896      200     1         build/nanos2/obj/handle_query_contract_id.o:(.debug_line)
+    2a96     2a96      257     1         build/nanos2/obj/handle_query_contract_ui.o:(.debug_line)
+    2ced     2ced      3cd     1         build/nanos2/obj/ledger_protocol.o:(.debug_line)
+    30ba     30ba      323     1         build/nanos2/obj/main.o:(.debug_line)
+    33dd     33dd      585     1         build/nanos2/obj/os.o:(.debug_line)
+    3962     3962      cb9     1         build/nanos2/obj/os_io_seproxyhal.o:(.debug_line)
+    461b     461b       9a     1         build/nanos2/obj/os_io_task.o:(.debug_line)
+    46b5     46b5      3ce     1         build/nanos2/obj/os_io_usb.o:(.debug_line)
+    4a83     4a83      6b9     1         build/nanos2/obj/os_printf.o:(.debug_line)
+    513c     513c       9c     1         build/nanos2/obj/pic.o:(.debug_line)
+    51d8     51d8      d2d     1         build/nanos2/obj/printf.o:(.debug_line)
+    5f05     5f05       64     1         build/nanos2/obj/stack_protector_init.o:(.debug_line)
+    5f69     5f69       5b     1         build/nanos2/obj/svc_call.o:(.debug_line)
+    5fc4     5fc4       5a     1         build/nanos2/obj/svc_cx_call.o:(.debug_line)
+    601e     601e     19e1     1         build/nanos2/obj/syscalls.o:(.debug_line)
+    79ff     79ff      382     1         build/nanos2/obj/usbd_conf.o:(.debug_line)
+    7d81     7d81      5dd     1         build/nanos2/obj/usbd_core.o:(.debug_line)
+    835e     835e      748     1         build/nanos2/obj/usbd_ctlreq.o:(.debug_line)
+    8aa6     8aa6      224     1         build/nanos2/obj/usbd_hid.o:(.debug_line)
+    8cca     8cca      42f     1         build/nanos2/obj/usbd_impl.o:(.debug_line)
+    90f9     90f9      20d     1         build/nanos2/obj/usbd_ioreq.o:(.debug_line)
+    9306     9306      626     1         build/nanos2/obj/ux_flow_engine.o:(.debug_line)
+    992c     992c      140     1         build/nanos2/obj/ux_layout_bb.o:(.debug_line)
+    9a6c     9a6c      115     1         build/nanos2/obj/ux_layout_bn.o:(.debug_line)
+    9b81     9b81      104     1         build/nanos2/obj/ux_layout_bnn.o:(.debug_line)
+    9c85     9c85      105     1         build/nanos2/obj/ux_layout_bnnn.o:(.debug_line)
+    9d8a     9d8a      115     1         build/nanos2/obj/ux_layout_nn.o:(.debug_line)
+    9e9f     9e9f      162     1         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_line)
+    a001     a001      104     1         build/nanos2/obj/ux_layout_nnn.o:(.debug_line)
+    a105     a105      105     1         build/nanos2/obj/ux_layout_nnnn.o:(.debug_line)
+    a20a     a20a      496     1         build/nanos2/obj/ux_layout_paging.o:(.debug_line)
+    a6a0     a6a0      202     1         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_line)
+    a8a2     a8a2      178     1         build/nanos2/obj/ux_layout_pb.o:(.debug_line)
+    aa1a     aa1a      1b6     1         build/nanos2/obj/ux_layout_pbb.o:(.debug_line)
+    abd0     abd0      116     1         build/nanos2/obj/ux_layout_pbn.o:(.debug_line)
+    ace6     ace6      103     1         build/nanos2/obj/ux_layout_pn.o:(.debug_line)
+    ade9     ade9      116     1         build/nanos2/obj/ux_layout_pnn.o:(.debug_line)
+    aeff     aeff      17a     1         build/nanos2/obj/ux_layout_utils.o:(.debug_line)
+    b079     b079      10b     1         build/nanos2/obj/ux_legacy.o:(.debug_line)
+    b184     b184      19a     1         build/nanos2/obj/ux_menulist.o:(.debug_line)
+    b31e     b31e      3f6     1         build/nanos2/obj/ux_stack.o:(.debug_line)
+       0        0     31e4     4 .debug_frame
+       0        0      158     4         build/nanos2/obj/bagl.o:(.debug_frame)
+     158      158       48     4         build/nanos2/obj/debug_write.o:(.debug_frame)
+     1a0      1a0      134     4         build/nanos2/obj/eth_internals.o:(.debug_frame)
+     2d4      2d4       34     4         build/nanos2/obj/handle_finalize.o:(.debug_frame)
+     308      308       34     4         build/nanos2/obj/handle_init_contract.o:(.debug_frame)
+     33c      33c       34     4         build/nanos2/obj/handle_provide_parameter.o:(.debug_frame)
+     370      370       30     4         build/nanos2/obj/handle_provide_token.o:(.debug_frame)
+     3a0      3a0       30     4         build/nanos2/obj/handle_query_contract_id.o:(.debug_frame)
+     3d0      3d0       34     4         build/nanos2/obj/handle_query_contract_ui.o:(.debug_frame)
+     404      404       68     4         build/nanos2/obj/ledger_protocol.o:(.debug_frame)
+     46c      46c       7c     4         build/nanos2/obj/main.o:(.debug_frame)
+     4e8      4e8      174     4         build/nanos2/obj/os.o:(.debug_frame)
+     65c      65c      2d0     4         build/nanos2/obj/os_io_seproxyhal.o:(.debug_frame)
+     92c      92c       2c     4         build/nanos2/obj/os_io_task.o:(.debug_frame)
+     958      958       7c     4         build/nanos2/obj/os_io_usb.o:(.debug_frame)
+     9d4      9d4       6c     4         build/nanos2/obj/os_printf.o:(.debug_frame)
+     a40      a40       3c     4         build/nanos2/obj/pic.o:(.debug_frame)
+     a7c      a7c      224     4         build/nanos2/obj/printf.o:(.debug_frame)
+     ca0      ca0     1194     4         build/nanos2/obj/syscalls.o:(.debug_frame)
+    1e34     1e34      160     4         build/nanos2/obj/usbd_conf.o:(.debug_frame)
+    1f94     1f94      1e8     4         build/nanos2/obj/usbd_core.o:(.debug_frame)
+    217c     217c      19c     4         build/nanos2/obj/usbd_ctlreq.o:(.debug_frame)
+    2318     2318       5c     4         build/nanos2/obj/usbd_hid.o:(.debug_frame)
+    2374     2374      124     4         build/nanos2/obj/usbd_impl.o:(.debug_frame)
+    2498     2498       a4     4         build/nanos2/obj/usbd_ioreq.o:(.debug_frame)
+    253c     253c      18c     4         build/nanos2/obj/ux_flow_engine.o:(.debug_frame)
+    26c8     26c8       44     4         build/nanos2/obj/ux_layout_bb.o:(.debug_frame)
+    270c     270c       44     4         build/nanos2/obj/ux_layout_bn.o:(.debug_frame)
+    2750     2750       2c     4         build/nanos2/obj/ux_layout_bnn.o:(.debug_frame)
+    277c     277c       2c     4         build/nanos2/obj/ux_layout_bnnn.o:(.debug_frame)
+    27a8     27a8       44     4         build/nanos2/obj/ux_layout_nn.o:(.debug_frame)
+    27ec     27ec       48     4         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_frame)
+    2834     2834       2c     4         build/nanos2/obj/ux_layout_nnn.o:(.debug_frame)
+    2860     2860       2c     4         build/nanos2/obj/ux_layout_nnnn.o:(.debug_frame)
+    288c     288c      16c     4         build/nanos2/obj/ux_layout_paging.o:(.debug_frame)
+    29f8     29f8       3c     4         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_frame)
+    2a34     2a34       48     4         build/nanos2/obj/ux_layout_pb.o:(.debug_frame)
+    2a7c     2a7c       60     4         build/nanos2/obj/ux_layout_pbb.o:(.debug_frame)
+    2adc     2adc       44     4         build/nanos2/obj/ux_layout_pbn.o:(.debug_frame)
+    2b20     2b20       2c     4         build/nanos2/obj/ux_layout_pn.o:(.debug_frame)
+    2b4c     2b4c       44     4         build/nanos2/obj/ux_layout_pnn.o:(.debug_frame)
+    2b90     2b90       58     4         build/nanos2/obj/ux_layout_utils.o:(.debug_frame)
+    2be8     2be8       24     4         build/nanos2/obj/ux_legacy.o:(.debug_frame)
+    2c0c     2c0c       78     4         build/nanos2/obj/ux_menulist.o:(.debug_frame)
+    2c84     2c84      110     4         build/nanos2/obj/ux_stack.o:(.debug_frame)
+    2d94     2d94       30     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_muldf3.o):(.debug_frame)
+    2dc4     2dc4       ac     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_addsubdf3.o):(.debug_frame)
+    2e70     2e70       50     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_muldivdf3.o):(.debug_frame)
+    2ec0     2ec0       c4     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_cmpdf2.o):(.debug_frame)
+    2f84     2f84       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_unorddf2.o):(.debug_frame)
+    2fa4     2fa4       24     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_fixdfsi.o):(.debug_frame)
+    2fc8     2fc8       24     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_arm_fixunsdfsi.o):(.debug_frame)
+    2fec     2fec       2c     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_aeabi_uldivmod.o):(.debug_frame)
+    3018     3018       38     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libgcc.a(_udivmoddi4.o):(.debug_frame)
+    3050     3050       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memclr.o):(.debug_frame)
+    3070     3070       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memcpy.o):(.debug_frame)
+    3090     3090       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memmove.o):(.debug_frame)
+    30b0     30b0       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-aeabi_memset.o):(.debug_frame)
+    30d0     30d0       28     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memcmp.o):(.debug_frame)
+    30f8     30f8       28     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memcpy-stub.o):(.debug_frame)
+    3120     3120       28     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memmove.o):(.debug_frame)
+    3148     3148       20     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-memset.o):(.debug_frame)
+    3168     3168       2c     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-strlcat.o):(.debug_frame)
+    3194     3194       28     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-strlcpy.o):(.debug_frame)
+    31bc     31bc       28     4         /opt/nanosplus-secure-sdk/arch/st33k1/lib/libc.a(lib_a-strnlen.o):(.debug_frame)
+       0        0     620d     1 .debug_str
+       0        0     620d     1         <internal>:(.debug_str)
+       0        0     c9fb     1 .debug_loc
+       0        0     1329     1         build/nanos2/obj/bagl.o:(.debug_loc)
+    1329     1329       72     1         build/nanos2/obj/debug_write.o:(.debug_loc)
+    139b     139b      b3d     1         build/nanos2/obj/eth_internals.o:(.debug_loc)
+    1ed8     1ed8       9b     1         build/nanos2/obj/handle_finalize.o:(.debug_loc)
+    1f73     1f73       5a     1         build/nanos2/obj/handle_init_contract.o:(.debug_loc)
+    1fcd     1fcd       dd     1         build/nanos2/obj/handle_provide_parameter.o:(.debug_loc)
+    20aa     20aa       62     1         build/nanos2/obj/handle_provide_token.o:(.debug_loc)
+    210c     210c       3c     1         build/nanos2/obj/handle_query_contract_id.o:(.debug_loc)
+    2148     2148       b2     1         build/nanos2/obj/handle_query_contract_ui.o:(.debug_loc)
+    21fa     21fa      244     1         build/nanos2/obj/ledger_protocol.o:(.debug_loc)
+    243e     243e      105     1         build/nanos2/obj/main.o:(.debug_loc)
+    2543     2543      936     1         build/nanos2/obj/os.o:(.debug_loc)
+    2e79     2e79      9c8     1         build/nanos2/obj/os_io_seproxyhal.o:(.debug_loc)
+    3841     3841      1a1     1         build/nanos2/obj/os_io_usb.o:(.debug_loc)
+    39e2     39e2      a2d     1         build/nanos2/obj/os_printf.o:(.debug_loc)
+    440f     440f       80     1         build/nanos2/obj/pic.o:(.debug_loc)
+    448f     448f     1c59     1         build/nanos2/obj/printf.o:(.debug_loc)
+    60e8     60e8     3834     1         build/nanos2/obj/syscalls.o:(.debug_loc)
+    991c     991c      429     1         build/nanos2/obj/usbd_conf.o:(.debug_loc)
+    9d45     9d45      640     1         build/nanos2/obj/usbd_core.o:(.debug_loc)
+    a385     a385      9e4     1         build/nanos2/obj/usbd_ctlreq.o:(.debug_loc)
+    ad69     ad69      1a6     1         build/nanos2/obj/usbd_hid.o:(.debug_loc)
+    af0f     af0f      2ce     1         build/nanos2/obj/usbd_impl.o:(.debug_loc)
+    b1dd     b1dd      243     1         build/nanos2/obj/usbd_ioreq.o:(.debug_loc)
+    b420     b420      3e5     1         build/nanos2/obj/ux_flow_engine.o:(.debug_loc)
+    b805     b805       4c     1         build/nanos2/obj/ux_layout_bb.o:(.debug_loc)
+    b851     b851       78     1         build/nanos2/obj/ux_layout_bn.o:(.debug_loc)
+    b8c9     b8c9       2c     1         build/nanos2/obj/ux_layout_bnn.o:(.debug_loc)
+    b8f5     b8f5       2c     1         build/nanos2/obj/ux_layout_bnnn.o:(.debug_loc)
+    b921     b921       78     1         build/nanos2/obj/ux_layout_nn.o:(.debug_loc)
+    b999     b999       75     1         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_loc)
+    ba0e     ba0e       2c     1         build/nanos2/obj/ux_layout_nnn.o:(.debug_loc)
+    ba3a     ba3a       2c     1         build/nanos2/obj/ux_layout_nnnn.o:(.debug_loc)
+    ba66     ba66      738     1         build/nanos2/obj/ux_layout_paging.o:(.debug_loc)
+    c19e     c19e      1d9     1         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_loc)
+    c377     c377       75     1         build/nanos2/obj/ux_layout_pb.o:(.debug_loc)
+    c3ec     c3ec       8d     1         build/nanos2/obj/ux_layout_pbb.o:(.debug_loc)
+    c479     c479       78     1         build/nanos2/obj/ux_layout_pbn.o:(.debug_loc)
+    c4f1     c4f1       2c     1         build/nanos2/obj/ux_layout_pn.o:(.debug_loc)
+    c51d     c51d       78     1         build/nanos2/obj/ux_layout_pnn.o:(.debug_loc)
+    c595     c595       93     1         build/nanos2/obj/ux_layout_utils.o:(.debug_loc)
+    c628     c628      173     1         build/nanos2/obj/ux_menulist.o:(.debug_loc)
+    c79b     c79b      260     1         build/nanos2/obj/ux_stack.o:(.debug_loc)
+d0000010 d0000010        0     1 PROVIDE ( _nvram = ABSOLUTE ( _nvram_start ) )
+d0000010 d0000010        0     1 PROVIDE ( _envram = ABSOLUTE ( _nvram_end ) )
+       0        0     1798     8 .debug_ranges
+       0        0      160     1         build/nanos2/obj/bagl.o:(.debug_ranges)
+     160      160      448     8         build/nanos2/obj/cx_stubs.o:(.debug_ranges)
+     5a8      5a8       18     1         build/nanos2/obj/debug_write.o:(.debug_ranges)
+     5c0      5c0       c8     1         build/nanos2/obj/eth_internals.o:(.debug_ranges)
+     688      688       18     1         build/nanos2/obj/handle_query_contract_ui.o:(.debug_ranges)
+     6a0      6a0       88     1         build/nanos2/obj/ledger_protocol.o:(.debug_ranges)
+     728      728       58     1         build/nanos2/obj/main.o:(.debug_ranges)
+     780      780       a8     1         build/nanos2/obj/os.o:(.debug_ranges)
+     828      828      198     1         build/nanos2/obj/os_io_seproxyhal.o:(.debug_ranges)
+     9c0      9c0       98     1         build/nanos2/obj/os_io_usb.o:(.debug_ranges)
+     a58      a58       18     1         build/nanos2/obj/os_printf.o:(.debug_ranges)
+     a70      a70       18     1         build/nanos2/obj/pic.o:(.debug_ranges)
+     a88      a88      1a0     1         build/nanos2/obj/printf.o:(.debug_ranges)
+     c28      c28      508     1         build/nanos2/obj/syscalls.o:(.debug_ranges)
+    1130     1130       70     1         build/nanos2/obj/usbd_conf.o:(.debug_ranges)
+    11a0     11a0       b0     1         build/nanos2/obj/usbd_core.o:(.debug_ranges)
+    1250     1250       b8     1         build/nanos2/obj/usbd_ctlreq.o:(.debug_ranges)
+    1308     1308       20     1         build/nanos2/obj/usbd_hid.o:(.debug_ranges)
+    1328     1328       80     1         build/nanos2/obj/usbd_impl.o:(.debug_ranges)
+    13a8     13a8       38     1         build/nanos2/obj/usbd_ioreq.o:(.debug_ranges)
+    13e0     13e0       d8     1         build/nanos2/obj/ux_flow_engine.o:(.debug_ranges)
+    14b8     14b8       40     1         build/nanos2/obj/ux_layout_bb.o:(.debug_ranges)
+    14f8     14f8       18     1         build/nanos2/obj/ux_layout_bn.o:(.debug_ranges)
+    1510     1510       18     1         build/nanos2/obj/ux_layout_nn.o:(.debug_ranges)
+    1528     1528       18     1         build/nanos2/obj/ux_layout_nnbnn.o:(.debug_ranges)
+    1540     1540       a0     1         build/nanos2/obj/ux_layout_paging.o:(.debug_ranges)
+    15e0     15e0       50     1         build/nanos2/obj/ux_layout_paging_compute.o:(.debug_ranges)
+    1630     1630       18     1         build/nanos2/obj/ux_layout_pb.o:(.debug_ranges)
+    1648     1648       48     1         build/nanos2/obj/ux_layout_pbb.o:(.debug_ranges)
+    1690     1690       18     1         build/nanos2/obj/ux_layout_pbn.o:(.debug_ranges)
+    16a8     16a8       18     1         build/nanos2/obj/ux_layout_pnn.o:(.debug_ranges)
+    16c0     16c0       20     1         build/nanos2/obj/ux_layout_utils.o:(.debug_ranges)
+    16e0     16e0       28     1         build/nanos2/obj/ux_menulist.o:(.debug_ranges)
+    1708     1708       90     1         build/nanos2/obj/ux_stack.o:(.debug_ranges)
+       0        0       47     1 .ARM.attributes
+       0        0       47     1         build/nanos2/obj/bagl.o:(.ARM.attributes)
+       0        0      c50     4 .symtab
+       0        0      c50     4         <internal>:(.symtab)
+       0        0       b1     1 .shstrtab
+       0        0       b1     1         <internal>:(.shstrtab)
+       0        0      841     1 .strtab
+       0        0      841     1         <internal>:(.strtab)
