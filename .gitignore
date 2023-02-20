@@ -2,7 +2,7 @@
 src/glyphs.c
 src/glyphs.h
 bin/
-build/nanos2
+build
 debug/
 dep/
 obj/
