@@ -9,4 +9,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Inital version of the brand new <Plugin Name> plugin for Ethereum application.
+- Inital version of the brand new CoW Swap plugin for Ethereum application.

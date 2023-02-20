@@ -29,9 +29,9 @@ Need more information about the interface, the architecture, or general stuff ab
 
 Smart contracts covered by this plugin are:
 
-| Network  | Version | Smart Contract                 |
-| -------- | ------- | ------------------------------ |
-| Ethereum | V3      | `0x00000000000000000000000000` |
+| Network  | Version | Smart Contract                               |
+| -------- | ------- | -------------------------------------------- |
+| Ethereum | V3      | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` |
 
 ## Build
 

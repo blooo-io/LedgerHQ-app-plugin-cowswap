@@ -31,21 +31,27 @@ void dispatch_plugin_calls(int message, void *parameters) {
     PRINTF("Handling parameters %d\n", parameters);
     switch (message) {
         case ETH_PLUGIN_INIT_CONTRACT:
+            PRINTF("SLI1 %d\n", message);
             handle_init_contract(parameters);
             break;
         case ETH_PLUGIN_PROVIDE_PARAMETER:
+            PRINTF("SLI2 %d\n", message);
             handle_provide_parameter(parameters);
             break;
         case ETH_PLUGIN_FINALIZE:
+            PRINTF("SLI3 %d\n", message);
             handle_finalize(parameters);
             break;
         case ETH_PLUGIN_PROVIDE_INFO:
+            PRINTF("SLI4 %d\n", message);
             handle_provide_token(parameters);
             break;
         case ETH_PLUGIN_QUERY_CONTRACT_ID:
+            PRINTF("SLI5 %d\n", message);
             handle_query_contract_id(parameters);
             break;
         case ETH_PLUGIN_QUERY_CONTRACT_UI:
+            PRINTF("SLI6 %d\n", message);
             handle_query_contract_ui(parameters);
             break;
         default:
