@@ -7,8 +7,10 @@
 //     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 // }
 
-static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) { 
-    memcpy(context->amount_sent, msg->pluginSharedRO->txContent->value.value , msg->pluginSharedRO->txContent->value.length);
+static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    memcpy(context->amount_sent, 
+           msg->pluginSharedRO->txContent->value.value , 
+           msg->pluginSharedRO->txContent->value.length);
 }
 
 static void handle_deposit(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
@@ -30,7 +32,7 @@ void handle_provide_parameter(void *parameters) {
 
     msg->result = ETH_PLUGIN_RESULT_OK;
 
-// If not used remove from here
+    // If not used remove from here
     if (context->skip) {
         // Skip this step, and don't forget to decrease skipping counter.
         context->skip--;
@@ -43,7 +45,7 @@ void handle_provide_parameter(void *parameters) {
             return;
         }
         context->offset = 0;
-// To here
+        // To here
         switch (context->selectorIndex) {
             case DEPOSIT:
                 handle_deposit(msg, context);

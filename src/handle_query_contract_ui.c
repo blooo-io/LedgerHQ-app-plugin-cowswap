@@ -18,22 +18,22 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
     }
 
     // handle which data to return
-    switch(context->selectorIndex) {
+    switch (context->selectorIndex) {
         case DEPOSIT:
             amountToString(msg->pluginSharedRO->txContent->value.value,
-                    msg->pluginSharedRO->txContent->value.length,
-                    WEI_TO_ETHER,
-                    context->ticker_sent,
-                    msg->msg,
-                    msg->msgLength);
+                           msg->pluginSharedRO->txContent->value.length,
+                           WEI_TO_ETHER,
+                           context->ticker_sent,
+                           msg->msg,
+                           msg->msgLength);
             break;
         default:
             amountToString(context->amount_sent,
-                   INT256_LENGTH,
-                   context->decimals_sent,
-                   context->ticker_sent,
-                   msg->msg,
-                   msg->msgLength);
+                           INT256_LENGTH,
+                           context->decimals_sent,
+                           context->ticker_sent,
+                           msg->msg,
+                           msg->msgLength);
             return;
     }
     PRINTF("AMOUNT SENT: %s\n", msg->msg);
@@ -84,7 +84,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
 
     bool both_tokens_found = token_received_found && token_sent_found;
     bool both_tokens_not_found = !token_received_found && !token_sent_found;
-// To here
+    // To here
 
     switch (index) {
         case 0:

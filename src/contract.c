@@ -11,7 +11,7 @@ static const uint8_t COWSWAP_DEPOSIT_SELECTOR[SELECTOR_SIZE] = {0xd0, 0xe3, 0x0d
 
 // Array of all the different CoW Swap selectors.
 const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {
-   COWSWAP_DEPOSIT_SELECTOR,
+    COWSWAP_DEPOSIT_SELECTOR,
 };
 
 // Ask dummy address ETH
@@ -22,5 +22,5 @@ const uint8_t PLUGIN_ETH_ADDRESS[ADDRESS_LENGTH] = {0xee, 0xee, 0xee, 0xee, 0xee
 
 // Remove if not used
 const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
