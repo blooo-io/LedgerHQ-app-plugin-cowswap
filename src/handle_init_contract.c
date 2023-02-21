@@ -37,7 +37,7 @@ void handle_init_contract(void *parameters) {
             context->next_param = NONE;
             break;
         case WITHDRAW:
-            context->next_param = AMOUNT_SENT;
+            context->next_param = AMOUNT_RECEIVED;
             break;
         default:
             PRINTF("Missing selectorIndex\n");

@@ -30,6 +30,14 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
                            msg->msg,
                            msg->msgLength);
             break;
+        case WITHDRAW:
+            amountToString(context->amount_received,
+                           INT256_LENGTH,
+                           context->decimals_sent,
+                           context->ticker_sent,
+                           msg->msg,
+                           msg->msgLength);
+            break;
         default:
             amountToString(context->amount_sent,
                            INT256_LENGTH,

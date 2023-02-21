@@ -15,6 +15,7 @@ void handle_finalize(void *parameters) {
     cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
 
     if (context->valid) {
+
         // For each case return a number of screens
         switch (context->selectorIndex) {
         case DEPOSIT:
@@ -27,6 +28,7 @@ void handle_finalize(void *parameters) {
             msg->numScreens = 2;
             return;
         }
+        PRINTF("screen %d", msg->numScreens);
 
         if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
             // Address is not network token (0xeee...) so we will need to look up the token in the

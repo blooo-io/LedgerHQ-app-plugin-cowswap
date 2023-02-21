@@ -7,6 +7,10 @@ static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_paramet
     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 }
 
+static void handle_amount_received(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    memcpy(context->amount_received, msg->parameter, INT256_LENGTH);
+}
+
 static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     memcpy(context->amount_sent, 
            msg->pluginSharedRO->txContent->value.value , 
@@ -15,8 +19,8 @@ static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_paramete
 
 static void handle_params(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case AMOUNT_SENT:
-            handle_amount_sent(msg, context)
+        case AMOUNT_RECEIVED:
+            handle_amount_received(msg, context);
             break;
         default:
             PRINTF("Param not supported\n");

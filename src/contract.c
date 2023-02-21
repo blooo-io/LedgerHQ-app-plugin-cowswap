@@ -15,7 +15,7 @@ static const uint8_t COWSWAP_WITHDRAW_SELECTOR[SELECTOR_SIZE] = {0x2e, 0x1a, 0x7
 // Array of all the different CoW Swap selectors.
 const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {
     COWSWAP_DEPOSIT_SELECTOR,
-    COWSWAP_WITHDRAW_SELECTOR,
+    COWSWAP_WITHDRAW_SELECTOR
 };
 
 // Ask dummy address ETH
