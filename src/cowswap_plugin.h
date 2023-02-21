@@ -5,7 +5,6 @@
 #include "eth_plugin_interface.h"
 
 #define PARAMETER_LENGTH 32
-#define SELECTOR_SIZE    4
 
 #define RUN_APPLICATION 1
 

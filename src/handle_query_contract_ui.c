@@ -4,7 +4,6 @@
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case DEPOSIT:
-        PRINTF("AMOUNT SENT1: %s\n", msg->msg);
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         default:
@@ -79,7 +78,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                             cowswap_parameters_t *context __attribute__((unused))) {
     uint8_t index = msg->screenIndex;
 
-// Remove if not used from here
+    // Remove if not used from here
     bool token_sent_found = context->tokens_found & TOKEN_SENT_FOUND;
     bool token_received_found = context->tokens_found & TOKEN_RECEIVED_FOUND;
 

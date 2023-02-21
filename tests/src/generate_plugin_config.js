@@ -68,10 +68,10 @@ function generate_plugin_config(testNetwork) {
 
       // Put them in `methods_info`
       methods_info[selector] = {
-        erc20OfInterest: values["erc20OfInterest"],
-        plugin: pluginName,
-        serialized_data: serializedData,
-        signature: signature,
+        "erc20OfInterest": values["erc20OfInterest"],
+        "plugin": pluginName,
+        "serialized_data": serializedData,
+        "signature": signature,
       };
     }
     // Add the abi to methods_info

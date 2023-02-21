@@ -15,7 +15,7 @@ const simOptions = {
   logging: true,
   X11: false,
   startDelay: 15000,
-  startText: "Ready",
+  startText: "is ready",
 };
 
 const Resolve = require("path").resolve;
@@ -24,9 +24,9 @@ const APP_PATH_NANOS = Resolve("elfs/ethereum_nanos.elf");
 const APP_PATH_NANOX = Resolve("elfs/ethereum_nanox.elf");
 const APP_PATH_NANOSP = Resolve("elfs/ethereum_nanosp.elf");
 
-const PLUGIN_LIB_NANOS = { cowswap: Resolve("elfs/cowswap_nanos.elf") };
-const PLUGIN_LIB_NANOX = { cowswap: Resolve("elfs/cowswap_nanox.elf") };
-const PLUGIN_LIB_NANOSP = { cowswap: Resolve("elfs/cowswap_nanosp.elf") };
+const PLUGIN_LIB_NANOS = { "cowswap": Resolve("elfs/cowswap_nanos.elf") };
+const PLUGIN_LIB_NANOX = { "cowswap": Resolve("elfs/cowswap_nanox.elf") };
+const PLUGIN_LIB_NANOSP = { "cowswap": Resolve("elfs/cowswap_nanosp.elf") };
 
 const RANDOM_ADDRESS = "0xaaaabbbbccccddddeeeeffffgggghhhhiiiijjjj";
 
