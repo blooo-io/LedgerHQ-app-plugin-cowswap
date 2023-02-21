@@ -15,7 +15,19 @@ void handle_finalize(void *parameters) {
     cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
 
     if (context->valid) {
-        msg->numScreens = 1;
+        // For each case return a number of screens
+        switch (context->selectorIndex) {
+        case DEPOSIT:
+            msg->numScreens = 1;
+            break;
+        case WITHDRAW:
+            msg->numScreens = 1;
+            break;
+        default:
+            msg->numScreens = 2;
+            return;
+        }
+
         if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
             // Address is not network token (0xeee...) so we will need to look up the token in the
             // CAL.

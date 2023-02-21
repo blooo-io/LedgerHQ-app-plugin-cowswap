@@ -36,6 +36,9 @@ void handle_init_contract(void *parameters) {
         case DEPOSIT:
             context->next_param = NONE;
             break;
+        case WITHDRAW:
+            context->next_param = AMOUNT_SENT;
+            break;
         default:
             PRINTF("Missing selectorIndex\n");
             msg->result = ETH_PLUGIN_RESULT_ERROR;

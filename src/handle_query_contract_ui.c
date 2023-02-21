@@ -6,6 +6,9 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
         case DEPOSIT:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
+        case WITHDRAW:
+            strlcpy(msg->title, "Receive", msg->titleLength);
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -42,9 +45,9 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        // case <Plugin Function>:
-        //     strlcpy(msg->title, "Receive", msg->titleLength);
-        //     break;
+        case WITHDRAW:
+            strlcpy(msg->title, "Receive", msg->titleLength);
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -87,6 +90,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
     // To here
 
     switch (index) {
+        PRINTF("index %d", index);
         case 0:
             return SEND_SCREEN;
         // case 0:

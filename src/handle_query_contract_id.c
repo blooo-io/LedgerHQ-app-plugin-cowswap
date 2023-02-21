@@ -10,6 +10,9 @@ void handle_query_contract_id(void *parameters) {
         case DEPOSIT:
             strlcpy(msg->version, "Deposit", msg->versionLength);
             break;
+        case WITHDRAW:
+            strlcpy(msg->version, "Withdraw", msg->versionLength);
+            break;
         default:
             PRINTF("Selector Index :%d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

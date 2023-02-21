@@ -3,9 +3,9 @@
 // Store the amount sent in the form of a string, without any ticker or decimals. These will be
 // added when displaying.
 
-// static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-//     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
-// }
+static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
+}
 
 static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     memcpy(context->amount_sent, 
@@ -13,10 +13,10 @@ static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_paramete
            msg->pluginSharedRO->txContent->value.length);
 }
 
-static void handle_deposit(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+static void handle_params(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case NONE:
-            handle_value_sent(msg, context);
+        case AMOUNT_SENT:
+            handle_amount_sent(msg, context)
             break;
         default:
             PRINTF("Param not supported\n");
@@ -47,8 +47,8 @@ void handle_provide_parameter(void *parameters) {
         context->offset = 0;
         // To here
         switch (context->selectorIndex) {
-            case DEPOSIT:
-                handle_deposit(msg, context);
+            case WITHDRAW:
+                handle_params(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);

@@ -9,6 +9,11 @@
           "erc20OfInterest": [],
           "method": "Deposit",
           "plugin": "cowswap"
+        },
+        "0x2e1a7d4d": {
+          "erc20OfInterest": [],
+          "method": "Withdraw",
+          "plugin": "cowswap"
         }
       }
     }
