@@ -9,6 +9,9 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
         case WITHDRAW:
             strlcpy(msg->title, "Receive", msg->titleLength);
             break;
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order UID", msg->titleLength);
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -30,14 +33,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
                            msg->msg,
                            msg->msgLength);
             break;
-        case WITHDRAW:
-            amountToString(context->amount_received,
-                           INT256_LENGTH,
-                           context->decimals_sent,
-                           context->ticker_sent,
-                           msg->msg,
-                           msg->msgLength);
-            break;
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, msg->msg, msg->titleLength);
         default:
             amountToString(context->amount_sent,
                            INT256_LENGTH,
@@ -53,8 +50,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case WITHDRAW:
-            strlcpy(msg->title, "Receive", msg->titleLength);
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order uid 2/2", msg->titleLength);
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
@@ -88,6 +85,7 @@ static void set_warning_ui(ethQueryContractUI_t *msg,
 static screens_t get_screen(ethQueryContractUI_t *msg,
                             cowswap_parameters_t *context __attribute__((unused))) {
     uint8_t index = msg->screenIndex;
+    PRINTF("SCREEN INDEX %d", index);
 
     // Remove if not used from here
     bool token_sent_found = context->tokens_found & TOKEN_SENT_FOUND;
@@ -98,9 +96,10 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
     // To here
 
     switch (index) {
-        PRINTF("index %d", index);
         case 0:
             return SEND_SCREEN;
+        case 1: 
+            return RECEIVE_SCREEN;
         // case 0:
         //     if (both_tokens_found) {
         //         return SEND_SCREEN;

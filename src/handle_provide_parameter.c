@@ -12,10 +12,31 @@ static void handle_amount_received(ethPluginProvideParameter_t *msg,
     memcpy(context->amount_received, msg->parameter, INT256_LENGTH);
 }
 
-static void handle_params(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+static void handle_order_uid_two(ethPluginProvideParameter_t *msg,
+                                 cowswap_parameters_t *context) {
+    memcpy(context->amount_received, msg->parameter, ORDER_UID_TWO_LENGTH);
+}
+
+static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case AMOUNT_RECEIVED:
-            handle_amount_received(msg, context);
+        case AMOUNT_SENT :
+            handle_amount_sent(msg, context);
+            break;
+        default:
+            PRINTF("Param not supported\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void handle_invalidated_order(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    switch (context->next_param) {
+        case ORDER_UID_ONE :
+            handle_amount_sent(msg, context);
+            context->next_param = ORDER_UID_TWO;
+            break;
+        case ORDER_UID_TWO:
+            handle_order_uid_two(msg, context);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -47,7 +68,10 @@ void handle_provide_parameter(void *parameters) {
         // To here
         switch (context->selectorIndex) {
             case WITHDRAW:
-                handle_params(msg, context);
+                handle_withdraw(msg, context);
+                break;
+            case INVALIDATE_ORDER:
+                handle_invalidated_order(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);

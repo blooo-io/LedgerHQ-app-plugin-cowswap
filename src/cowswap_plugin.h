@@ -8,7 +8,7 @@
 
 #define RUN_APPLICATION 1
 
-#define NUM_COWSWAP_SELECTORS 2
+#define NUM_COWSWAP_SELECTORS 3
 #define SELECTOR_SIZE         4
 
 #define PLUGIN_NAME "CoW Swap"
@@ -24,7 +24,7 @@ extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];    // REMOVE IF NOT USED
     (!memcmp(_addr, PLUGIN_ETH_ADDRESS, ADDRESS_LENGTH) || \
      !memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 
-typedef enum { DEPOSIT, WITHDRAW } pluginSelector_t;
+typedef enum { DEPOSIT, WITHDRAW, INVALIDATE_ORDER } pluginSelector_t;
 
 extern const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS];
 
@@ -38,6 +38,9 @@ typedef enum {
 #define AMOUNT_SENT     0  // Amount sent by the user to the contract.
 #define AMOUNT_RECEIVED 1  // Amount sent by the contract to the user.
 #define NONE            2  // Placeholder variant to be set when parsing is done.
+#define ORDER_UID_ONE   3  // Used for order UID first part
+#define ORDER_UID_TWO   4  // Used for order UID second part
+#define ORDER_UID_TWO_LENGTH  24 
 
 // Number of decimals used when the token wasn't found in the CAL.
 #define DEFAULT_DECIMAL WEI_TO_ETHER
@@ -65,9 +68,9 @@ typedef struct cowswap_parameters_t {
     uint8_t flags;
     uint8_t skip;
 } cowswap_parameters_t;  // Remove any variable not used
-// 32*2 + 2*20 + 12*2 = 128
+// 32*2 + 2*20 + 11*2 = 126
 // 2*2 + 1*8 = 12
-// 12+128 = 140
+// 12+126 = 138
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32.
 // Do not remove this check.
