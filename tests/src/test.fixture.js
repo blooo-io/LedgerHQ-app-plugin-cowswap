@@ -15,7 +15,12 @@ const simOptions = {
   logging: true,
   X11: false,
   startDelay: 15000,
-  startText: "is ready",
+  startText: "Ready",
+  approveKeyword: "APPROVE",
+  rejectKeyword: "REJECT",
+  custom: "",
+  caseSensitive: false,
+  sdk:""
 };
 
 const Resolve = require("path").resolve;
