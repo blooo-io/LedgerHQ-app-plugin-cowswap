@@ -15,7 +15,6 @@ void handle_finalize(void *parameters) {
     cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
 
     if (context->valid) {
-
         // For each case return a number of screens
         switch (context->selectorIndex) {
             case DEPOSIT:
