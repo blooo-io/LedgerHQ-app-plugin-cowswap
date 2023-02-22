@@ -18,15 +18,15 @@ void handle_finalize(void *parameters) {
 
         // For each case return a number of screens
         switch (context->selectorIndex) {
-        case DEPOSIT:
-            msg->numScreens = 1;
-            break;
-        case WITHDRAW:
-            msg->numScreens = 1;
-            break;
-        default:
-            msg->numScreens = 2;
-            return;
+            case DEPOSIT:
+                msg->numScreens = 1;
+                break;
+            case WITHDRAW:
+                msg->numScreens = 1;
+                break;
+            default:
+                msg->numScreens = 2;
+                return;
         }
         PRINTF("screen %d", msg->numScreens);
 

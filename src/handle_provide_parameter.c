@@ -7,13 +7,14 @@ static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_paramet
     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 }
 
-static void handle_amount_received(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+static void handle_amount_received(ethPluginProvideParameter_t *msg, 
+                                   cowswap_parameters_t *context) {
     memcpy(context->amount_received, msg->parameter, INT256_LENGTH);
 }
 
 static void handle_value_sent(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     memcpy(context->amount_sent, 
-           msg->pluginSharedRO->txContent->value.value , 
+           msg->pluginSharedRO->txContent->value.value, 
            msg->pluginSharedRO->txContent->value.length);
 }
 
