@@ -5,14 +5,13 @@
 #include "eth_plugin_interface.h"
 
 #define PARAMETER_LENGTH 32
-#define SELECTOR_SIZE    4
 
 #define RUN_APPLICATION 1
 
-#define NUM_<Plugin Uppercase Name>_SELECTORS 1
-#define SELECTOR_SIZE 4
+#define NUM_COWSWAP_SELECTORS 2
+#define SELECTOR_SIZE         4
 
-#define PLUGIN_NAME "<Plugin Displayed Name>"
+#define PLUGIN_NAME "CoW Swap"
 
 #define TOKEN_SENT_FOUND     1       // REMOVE IF NOT USED
 #define TOKEN_RECEIVED_FOUND 1 << 1  // REMOVE IF NOT USED
@@ -25,9 +24,9 @@ extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];    // REMOVE IF NOT USED
     (!memcmp(_addr, PLUGIN_ETH_ADDRESS, ADDRESS_LENGTH) || \
      !memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 
-typedef enum {<Plugin Function Name> } pluginSelector_t;
+typedef enum { DEPOSIT, WITHDRAW } pluginSelector_t;
 
-extern const uint8_t *const <Plugin Uppercase Name>_SELECTORS[NUM_<Plugin Uppercase Name>_SELECTORS];
+extern const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS];
 
 typedef enum {
     SEND_SCREEN,
@@ -47,7 +46,7 @@ typedef enum {
 #define DEFAULT_TICKER ""
 
 // Shared global memory with Ethereum app. Must be at most 5 * 32 bytes.
-typedef struct <Plugin Name>_parameters_t {
+typedef struct cowswap_parameters_t {
     uint8_t amount_sent[INT256_LENGTH];
     uint8_t amount_received[INT256_LENGTH];
     uint8_t contract_address_sent[ADDRESS_LENGTH];
@@ -65,14 +64,14 @@ typedef struct <Plugin Name>_parameters_t {
     uint8_t selectorIndex;
     uint8_t flags;
     uint8_t skip;
-} <Plugin Name>_parameters_t;  // Remove any variable not used
+} cowswap_parameters_t;  // Remove any variable not used
 // 32*2 + 2*20 + 12*2 = 128
 // 2*2 + 1*8 = 12
 // 12+128 = 140
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32.
 // Do not remove this check.
-_Static_assert(sizeof(<Plugin Name>_parameters_t) <= 5 * 32, "Structure of parameters too big.");
+_Static_assert(sizeof(cowswap_parameters_t) <= 5 * 32, "Structure of parameters too big.");
 
 void handle_provide_parameter(void *parameters);
 void handle_query_contract_ui(void *parameters);

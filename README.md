@@ -1,16 +1,17 @@
 # Badges
+
 <Plugin Github Action Badger>
 
-# Ledger <Plugin Name> Plugin
+# Ledger CoW Swap Plugin
 
-This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a <Plugin Name> transaction.
+This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a CoW Swap transaction.
 
 ## Prerequisite
 
 Clone the plugin to a new folder.
 
 ```shell
-git clone https://github.com/blooo-io/<Plugin Repo Name>.git
+git clone https://github.com/blooo-io/LedgerHQ-app-plugin-cowswap.git
 ```
 
 Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
@@ -19,6 +20,7 @@ Then in the same folder clone two more repositories, which is the plugin-tools a
 git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
 git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
 ```
+
 ## Documentation
 
 Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
@@ -27,34 +29,37 @@ Need more information about the interface, the architecture, or general stuff ab
 
 Smart contracts covered by this plugin are:
 
-| Network | Version | Smart Contract |
-| ---       | --- | --- |
-| Ethereum  | V3  | `0x00000000000000000000000000`|
-
+| Network  | Version | Smart Contract                               |
+| -------- | ------- | -------------------------------------------- |
+| Ethereum | V3      | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` |
 
 ## Build
 
 Go to the plugin-tools folder and run the "./start" script.
+
 ```shell
 cd plugin-tools  # go to plugin folder
 ./start.sh       # run the script start.sh
 ```
+
 The script will build a docker image and attach a console.
-When the docker image is running go to the "<Plugin Repo Name>" folder and build the ".elf" files.
+When the docker image is running go to the "LedgerHQ-app-plugin-cowswap" folder and build the ".elf" files.
+
 ```shell
-cd <Plugin Repo Name>/tests       # go to the tests folder in <Plugin Repo Name>
+cd LedgerHQ-app-plugin-cowswap/tests       # go to the tests folder in LedgerHQ-app-plugin-cowswap
 ./build_local_test_elfs.sh              # run the script build_local_test_elfs.sh
 ```
 
 ## Tests
 
-To test the plugin go to the tests folder from the "<Plugin Repo Name>" and run the script "test"
+To test the plugin go to the tests folder from the "LedgerHQ-app-plugin-cowswap" and run the script "test"
+
 ```shell
-cd <Plugin Repo Name>/tests       # go to the tests folder in <Plugin Repo Name>
+cd LedgerHQ-app-plugin-cowswap/tests       # go to the tests folder in LedgerHQ-app-plugin-cowswap
 yarn test                       # run the script test
 ```
-## Continuous Integration
 
+## Continuous Integration
 
 The flow processed in [GitHub Actions](https://github.com/features/actions) is the following:
 

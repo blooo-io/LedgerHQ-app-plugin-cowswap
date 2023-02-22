@@ -18,7 +18,7 @@ export BOLOS_SDK="$NANOS_SDK"
 echo "**Building app-plugin for Nano S..."
 make clean
 make -j DEBUG=1
-cp bin/app.elf "tests/elfs/<Plugin Name>_nanos.elf"
+cp bin/app.elf "tests/elfs/cowswap_nanos.elf"
 
 echo "**Building app-ethereum for Nano S..."
 cd $APP_ETHEREUM
@@ -34,7 +34,7 @@ export BOLOS_SDK="$NANOX_SDK"
 echo "**Building app-plugin for Nano X..."
 make clean
 make -j DEBUG=1
-cp bin/app.elf "tests/elfs/<Plugin Name>_nanox.elf"
+cp bin/app.elf "tests/elfs/cowswap_nanox.elf"
 
 echo "**Building app-ethereum for Nano X..."
 cd $APP_ETHEREUM
@@ -50,7 +50,7 @@ export BOLOS_SDK="$NANOSP_SDK"
 echo "**Building app-plugin for Nano S+..."
 make clean
 make -j DEBUG=1
-cp bin/app.elf "tests/elfs/<Plugin Name>_nanosp.elf"
+cp bin/app.elf "tests/elfs/cowswap_nanosp.elf"
 
 echo "**Building app-ethereum for Nano S+..."
 cd $APP_ETHEREUM
@@ -60,3 +60,4 @@ cd -
 cp "${APP_ETHEREUM}/bin/app.elf" "tests/elfs/ethereum_nanosp.elf"
 
 echo "done"
+
