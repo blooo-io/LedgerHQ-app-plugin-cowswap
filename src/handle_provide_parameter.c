@@ -37,6 +37,9 @@ static void handle_invalidated_order(ethPluginProvideParameter_t *msg, cowswap_p
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
+            context->next_param = NONE;
+            break;
+        case NONE:
             break;
         default:
             PRINTF("Param not supported\n");

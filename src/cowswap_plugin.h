@@ -33,6 +33,7 @@ typedef enum {
     RECEIVE_SCREEN,
     WARN_SCREEN,
     ERROR,
+    ORDER_UID_SCREEN,
 } screens_t;
 
 #define AMOUNT_SENT     0  // Amount sent by the user to the contract.
@@ -40,7 +41,9 @@ typedef enum {
 #define NONE            2  // Placeholder variant to be set when parsing is done.
 #define ORDER_UID_ONE   3  // Used for order UID first part
 #define ORDER_UID_TWO   4  // Used for order UID second part
-#define ORDER_UID_TWO_LENGTH  24 
+
+#define ORDER_UID_TWO_LENGTH 24 
+#define ORDER_UID_LENGTH     56
 
 // Number of decimals used when the token wasn't found in the CAL.
 #define DEFAULT_DECIMAL WEI_TO_ETHER
@@ -91,4 +94,40 @@ static inline void printf_hex_array(const char *title __attribute__((unused)),
         PRINTF("%02x", data[i]);
     };
     PRINTF("\n");
+}
+
+static inline void getOrderUid(uint8_t *address, char *out) {
+    // save some precious stack space
+    union locals_union {
+        uint8_t hashChecksum[INT256_LENGTH];
+        uint8_t tmp[51];
+    } locals_union;
+    uint8_t i;
+    uint32_t offset = 0;
+
+    for (i = 0; i < 56; i++) {
+        uint8_t digit = address[i];
+        locals_union.tmp[offset + 2 * i] = HEXDIGITS[(digit >> 4) & 0x0f];
+        locals_union.tmp[offset + 2 * i + 1] = HEXDIGITS[digit & 0x0f];
+    }
+
+    for (i = 0; i < 112; i++) {
+        uint8_t digit = address[i / 2];
+        if ((i % 2) == 0) {
+            digit = (digit >> 4) & 0x0f;
+        } else {
+            digit = digit & 0x0f;
+        }
+        if (digit < 10) {
+            out[i] = HEXDIGITS[digit];
+        } else {
+            int v = (locals_union.hashChecksum[i / 2] >> (4 * (1 - i % 2))) & 0x0f;
+            if (v >= 8) {
+                out[i] = HEXDIGITS[digit] - 'a' + 'A';
+            } else {
+                out[i] = HEXDIGITS[digit];
+            }
+        }
+    }
+    out[112] = '\0';
 }
