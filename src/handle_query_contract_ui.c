@@ -139,7 +139,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
             switch (index) {
                 case 0:
                     return ORDER_UID_SCREEN;
-                case 1: 
+                case 1:
                     return ORDER_UID_SCREEN_TWO;
                 default:
                     return ERROR;

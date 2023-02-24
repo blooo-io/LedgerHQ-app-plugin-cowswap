@@ -48,7 +48,5 @@ void handle_init_contract(void *parameters) {
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
     }
-
     msg->result = ETH_PLUGIN_RESULT_OK;
 }
-
