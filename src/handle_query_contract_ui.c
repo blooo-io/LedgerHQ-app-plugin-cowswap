@@ -1,6 +1,6 @@
 #include "cowswap_plugin.h"
 
-// Set UI for the "Send" screen.
+// Set UI for the "Send" screen. Usually used for common amount value
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case DEPOSIT:
@@ -30,14 +30,6 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
                            msg->msg,
                            msg->msgLength);
             break;
-        case WITHDRAW:
-            amountToString(context->amount_received,
-                           INT256_LENGTH,
-                           context->decimals_sent,
-                           context->ticker_sent,
-                           msg->msg,
-                           msg->msgLength);
-            break;
         default:
             amountToString(context->amount_sent,
                            INT256_LENGTH,
@@ -53,8 +45,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case WITHDRAW:
-            strlcpy(msg->title, "Receive", msg->titleLength);
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order uid 2/2", msg->titleLength);
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
@@ -84,6 +76,38 @@ static void set_warning_ui(ethQueryContractUI_t *msg,
     strlcpy(msg->msg, "Unknown token", msg->msgLength);
 }
 
+// Set UI for Order Uid first part
+static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order UID 1", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    msg->msg[0] = '0';
+    msg->msg[1] = 'x';
+    getOrderUid(context->amount_sent, msg->msg + 2, INT256_LENGTH);
+}
+
+// Set UI for Order Uid second part
+static void set_order_uid_two_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order UID 2", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    getOrderUid(context->amount_received, msg->msg, ORDER_UID_TWO_LENGTH);
+}
+
 // Helper function that returns the enum corresponding to the screen that should be displayed.
 static screens_t get_screen(ethQueryContractUI_t *msg,
                             cowswap_parameters_t *context __attribute__((unused))) {
@@ -96,45 +120,30 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
     bool both_tokens_found = token_received_found && token_sent_found;
     bool both_tokens_not_found = !token_received_found && !token_sent_found;
     // To here
-
-    switch (index) {
-        PRINTF("index %d", index);
-        case 0:
-            return SEND_SCREEN;
-        // case 0:
-        //     if (both_tokens_found) {
-        //         return SEND_SCREEN;
-        //     } else if (both_tokens_not_found) {
-        //         return WARN_SCREEN;
-        //     } else if (token_sent_found) {
-        //         return SEND_SCREEN;
-        //     } else if (token_received_found) {
-        //         return WARN_SCREEN;
-        //     }
-        // case 1:
-        //     if (both_tokens_found) {
-        //         return RECEIVE_SCREEN;
-        //     } else if (both_tokens_not_found) {
-        //         return SEND_SCREEN;
-        //     } else if (token_sent_found) {
-        //         return WARN_SCREEN;
-        //     } else if (token_received_found) {
-        //         return SEND_SCREEN;
-        //     }
-        // case 2:
-        //     if (both_tokens_found) {
-        //         return ERROR;
-        //     } else if (both_tokens_not_found) {
-        //         return WARN_SCREEN;
-        //     } else {
-        //         return RECEIVE_SCREEN;
-        //     }
-        // case 3:
-        //     if (both_tokens_not_found) {
-        //         return RECEIVE_SCREEN;
-        //     } else {
-        //         return ERROR;
-        //     }
+    switch (context->selectorIndex) {
+        case DEPOSIT:
+            switch (index) {
+                case 0:
+                    return SEND_SCREEN;
+                default:
+                    return ERROR;
+            }
+        case WITHDRAW:
+            switch (index) {
+                case 0:
+                    return SEND_SCREEN;
+                default:
+                    return ERROR;
+            }
+        case INVALIDATE_ORDER:
+            switch (index) {
+                case 0:
+                    return ORDER_UID_SCREEN;
+                case 1:
+                    return ORDER_UID_SCREEN_TWO;
+                default:
+                    return ERROR;
+            }
         default:
             return ERROR;
     }
@@ -158,6 +167,12 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case WARN_SCREEN:
             set_warning_ui(msg, context);
+            break;
+        case ORDER_UID_SCREEN:
+            set_order_uid_ui(msg, context);
+            break;
+        case ORDER_UID_SCREEN_TWO:
+            set_order_uid_two_ui(msg, context);
             break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);

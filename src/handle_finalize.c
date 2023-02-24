@@ -23,11 +23,13 @@ void handle_finalize(void *parameters) {
             case WITHDRAW:
                 msg->numScreens = 1;
                 break;
+            case INVALIDATE_ORDER:
+                msg->numScreens = 2;
+                break;
             default:
                 msg->numScreens = 2;
                 return;
         }
-        PRINTF("screen %d", msg->numScreens);
 
         if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
             // Address is not network token (0xeee...) so we will need to look up the token in the

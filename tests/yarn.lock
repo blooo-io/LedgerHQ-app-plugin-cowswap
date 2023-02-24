@@ -2092,10 +2092,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@zondax/zemu@^0.35.0":
-  version "0.35.0"
-  resolved "https://registry.yarnpkg.com/@zondax/zemu/-/zemu-0.35.0.tgz#65f5b668f214afcda42f0d576affddedbd3b31de"
-  integrity sha512-uBfG1hLu2r1VzPNI9agHZULdn1iwK1RnRBfCUKJI5zZ1WT8GUWFXKupdcaWxrGSwTo+WLtIrZFHlvIv5HMHheQ==
+"@zondax/zemu@^0.35.1":
+  version "0.35.1"
+  resolved "https://registry.yarnpkg.com/@zondax/zemu/-/zemu-0.35.1.tgz#5a5f083909b9699a6fe346ac0425ff3a5ba45644"
+  integrity sha512-v7JWBkmnyeZnt1RB6kD2NTc8h/Cl5aDHq/kX8a4KvV0Ay1jB+KAXsfCTtPN9jjc0hkTXB7qFMIFmp07EpM+jfg==
   dependencies:
     "@grpc/grpc-js" "^1.8.8"
     "@grpc/proto-loader" "^0.7.5"

@@ -48,6 +48,7 @@ let genericTx = {
 let config;
 
 const TIMEOUT = 2000000;
+jest.setTimeout(4000000)
 
 /**
  * Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.

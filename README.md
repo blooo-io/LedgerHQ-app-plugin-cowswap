@@ -32,7 +32,7 @@ Smart contracts covered by this plugin are:
 | Network  | Version | Smart Contract                               |
 | -------- | ------- | -------------------------------------------- |
 | Ethereum | V3      | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` |
-
+| Ethereum | V3      | `0x9008D19f58AAbD9eD0D60971565AA8510560ab41` |
 ## Build
 
 Go to the plugin-tools folder and run the "./start" script.

@@ -16,6 +16,17 @@
           "plugin": "cowswap"
         }
       }
+    },
+    {
+      "address": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
+      "contractName": "GPv2Settlement",
+      "selectors": {
+        "0x15337bc0": {
+          "erc20OfInterest": [],
+          "method": "invalidateOrder",
+          "plugin": "cowswap"
+        }
+      }
     }
   ],
   "name": "cowswap"
