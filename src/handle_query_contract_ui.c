@@ -76,10 +76,11 @@ static void set_warning_ui(ethQueryContractUI_t *msg,
     strlcpy(msg->msg, "Unknown token", msg->msgLength);
 }
 
+// Set UI for Order Uid first part
 static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case INVALIDATE_ORDER:
-            strlcpy(msg->title, "Order UID", msg->titleLength);
+            strlcpy(msg->title, "Order UID 1", msg->titleLength);
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
@@ -87,15 +88,24 @@ static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *co
             return;
     }
 
-    char order_uid[ORDER_UID_LENGTH];
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
+    getOrderUid(context->amount_sent, msg->msg + 2, INT256_LENGTH);
+}
 
-    memcpy(order_uid, context->amount_sent, INT256_LENGTH);
-    memcpy(order_uid + INT256_LENGTH, context->amount_received, ORDER_UID_TWO_LENGTH);
-    getOrderUid((uint8_t *) order_uid, msg->msg + 2);
-    PRINTF("MSGLENG %d\n", msg->msgLength);
-    PRINTF("AMOUNT SENT: %s\n", msg->msg);
+// Set UI for Order Uid second part
+static void set_order_uid_two_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case INVALIDATE_ORDER:
+            strlcpy(msg->title, "Order UID 2", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    getOrderUid(context->amount_received, msg->msg, ORDER_UID_TWO_LENGTH);
 }
 
 // Helper function that returns the enum corresponding to the screen that should be displayed.
@@ -129,6 +139,8 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
             switch (index) {
                 case 0:
                     return ORDER_UID_SCREEN;
+                case 1 : 
+                    return ORDER_UID_SCREEN_TWO;
                 default:
                     return ERROR;
             }
@@ -158,8 +170,10 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case ORDER_UID_SCREEN:
             set_order_uid_ui(msg, context);
-            PRINTF("JFIOQJOIQSFJOISQFJOSQIFQS");
             break;
+        case ORDER_UID_SCREEN_TWO:
+            set_order_uid_two_ui(msg, context);
+        break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

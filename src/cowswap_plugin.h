@@ -34,6 +34,7 @@ typedef enum {
     WARN_SCREEN,
     ERROR,
     ORDER_UID_SCREEN,
+    ORDER_UID_SCREEN_TWO,
 } screens_t;
 
 #define AMOUNT_SENT     0  // Amount sent by the user to the contract.
@@ -96,7 +97,7 @@ static inline void printf_hex_array(const char *title __attribute__((unused)),
     PRINTF("\n");
 }
 
-static inline void getOrderUid(uint8_t *address, char *out) {
+static inline void getOrderUid(uint8_t *address, char *out, size_t len) {
     // save some precious stack space
     union locals_union {
         uint8_t hashChecksum[INT256_LENGTH];
@@ -105,29 +106,20 @@ static inline void getOrderUid(uint8_t *address, char *out) {
     uint8_t i;
     uint32_t offset = 0;
 
-    for (i = 0; i < 56; i++) {
+    for (i = 0; i < len; i++) {
         uint8_t digit = address[i];
         locals_union.tmp[offset + 2 * i] = HEXDIGITS[(digit >> 4) & 0x0f];
         locals_union.tmp[offset + 2 * i + 1] = HEXDIGITS[digit & 0x0f];
     }
 
-    for (i = 0; i < 112; i++) {
+    for (i = 0; i < len * 2; i++) {
         uint8_t digit = address[i / 2];
         if ((i % 2) == 0) {
             digit = (digit >> 4) & 0x0f;
         } else {
             digit = digit & 0x0f;
         }
-        if (digit < 10) {
-            out[i] = HEXDIGITS[digit];
-        } else {
-            int v = (locals_union.hashChecksum[i / 2] >> (4 * (1 - i % 2))) & 0x0f;
-            if (v >= 8) {
-                out[i] = HEXDIGITS[digit] - 'a' + 'A';
-            } else {
-                out[i] = HEXDIGITS[digit];
-            }
-        }
+        out[i] = HEXDIGITS[digit];
     }
-    out[112] = '\0';
+    out[len * 2] = '\0';
 }

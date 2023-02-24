@@ -24,7 +24,7 @@ void handle_finalize(void *parameters) {
                 msg->numScreens = 1;
                 break;
             case INVALIDATE_ORDER:
-                msg->numScreens = 1;
+                msg->numScreens = 2;
                 break;
             default:
                 msg->numScreens = 2;
