@@ -19,10 +19,11 @@ static const uint8_t COWSWAP_INVALIDATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x15, 0
 static const uint8_t COWSWAP_SET_PRE_SIGNATURE_SELECTOR[SELECTOR_SIZE] = {0xec, 0x6c, 0xb1, 0x3f};
 
 // Array of all the different CoW Swap selectors.
-const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {COWSWAP_DEPOSIT_SELECTOR,
-                                                                 COWSWAP_WITHDRAW_SELECTOR,
-                                                                 COWSWAP_INVALIDATE_ORDER_SELECTOR,
-                                                                 COWSWAP_SET_PRE_SIGNATURE_SELECTOR};
+const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {
+    COWSWAP_DEPOSIT_SELECTOR,
+    COWSWAP_WITHDRAW_SELECTOR,
+    COWSWAP_INVALIDATE_ORDER_SELECTOR,
+    COWSWAP_SET_PRE_SIGNATURE_SELECTOR};
 
 // Ask dummy address ETH
 // Remove if not used

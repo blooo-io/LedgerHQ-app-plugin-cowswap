@@ -24,7 +24,7 @@ extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];    // REMOVE IF NOT USED
     (!memcmp(_addr, PLUGIN_ETH_ADDRESS, ADDRESS_LENGTH) || \
      !memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 
-typedef enum { DEPOSIT, WITHDRAW, INVALIDATE_ORDER, SET_PRE_SIGNATURE} pluginSelector_t;
+typedef enum { DEPOSIT, WITHDRAW, INVALIDATE_ORDER, SET_PRE_SIGNATURE } pluginSelector_t;
 
 extern const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS];
 
