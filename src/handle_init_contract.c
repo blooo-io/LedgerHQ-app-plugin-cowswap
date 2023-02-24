@@ -43,6 +43,10 @@ void handle_init_contract(void *parameters) {
             context->skip = 2;
             context->next_param = ORDER_UID_ONE;
             break;
+        case SET_PRE_SIGNATURE:
+            context->skip = 1;
+            context->next_param = SIGNED;
+            break;
         default:
             PRINTF("Missing selectorIndex\n");
             msg->result = ETH_PLUGIN_RESULT_ERROR;

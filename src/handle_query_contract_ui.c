@@ -45,9 +45,6 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case INVALIDATE_ORDER:
-            strlcpy(msg->title, "Order uid 2/2", msg->titleLength);
-            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -79,6 +76,9 @@ static void set_warning_ui(ethQueryContractUI_t *msg,
 // Set UI for Order Uid first part
 static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
+        case SET_PRE_SIGNATURE:
+            strlcpy(msg->title, "Order UID 1", msg->titleLength);
+            break;
         case INVALIDATE_ORDER:
             strlcpy(msg->title, "Order UID 1", msg->titleLength);
             break;
@@ -96,6 +96,9 @@ static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *co
 // Set UI for Order Uid second part
 static void set_order_uid_two_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
+        case SET_PRE_SIGNATURE:
+            strlcpy(msg->title, "Order UID 2", msg->titleLength);
+            break;
         case INVALIDATE_ORDER:
             strlcpy(msg->title, "Order UID 2", msg->titleLength);
             break;
@@ -106,6 +109,25 @@ static void set_order_uid_two_ui(ethQueryContractUI_t *msg, cowswap_parameters_t
     }
 
     getOrderUid(context->amount_received, msg->msg, ORDER_UID_TWO_LENGTH);
+}
+
+// Set UI for signed
+static void set_signed_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case SET_PRE_SIGNATURE:
+            strlcpy(msg->title, "Signed", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    if (context->is_signed == 0) {
+        strlcpy(msg->title, "false", msg->titleLength);
+    } else {
+        strlcpy(msg->title, "true", msg->titleLength);
+    }
 }
 
 // Helper function that returns the enum corresponding to the screen that should be displayed.
@@ -144,6 +166,17 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                 default:
                     return ERROR;
             }
+        case SET_PRE_SIGNATURE:
+            switch (index) {
+                case 0:
+                    return SIGNED_SCREEN;
+                case 1:
+                    return ORDER_UID_SCREEN;
+                case 2:
+                    return ORDER_UID_SCREEN_TWO;
+                default:
+                    return ERROR;
+            }
         default:
             return ERROR;
     }
@@ -173,6 +206,9 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case ORDER_UID_SCREEN_TWO:
             set_order_uid_two_ui(msg, context);
+            break;
+        case SIGNED_SCREEN:
+            set_signed_ui(msg, context);
             break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);

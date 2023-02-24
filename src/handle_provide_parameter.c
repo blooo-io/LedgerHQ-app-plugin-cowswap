@@ -16,6 +16,10 @@ static void handle_order_uid_two(ethPluginProvideParameter_t *msg, cowswap_param
     memcpy(context->amount_received, msg->parameter, ORDER_UID_TWO_LENGTH);
 }
 
+static void handle_signed(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    U2BE_from_parameter(msg->parameter, &(context->is_signed));
+}
+
 static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
         case AMOUNT_SENT:
@@ -31,6 +35,31 @@ static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters
 static void handle_invalidated_order(ethPluginProvideParameter_t *msg,
                                      cowswap_parameters_t *context) {
     switch (context->next_param) {
+        case ORDER_UID_ONE:
+            handle_amount_sent(msg, context);
+            context->next_param = ORDER_UID_TWO;
+            break;
+        case ORDER_UID_TWO:
+            handle_order_uid_two(msg, context);
+            context->next_param = NONE;
+            break;
+        case NONE:
+            break;
+        default:
+            PRINTF("Param not supported\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
+                                     cowswap_parameters_t *context) {
+    switch (context->next_param) {
+        case SIGNED:
+            handle_signed(msg, context);
+            context->skip = 1;
+            context->next_param = ORDER_UID_ONE;
+            break;
         case ORDER_UID_ONE:
             handle_amount_sent(msg, context);
             context->next_param = ORDER_UID_TWO;
@@ -75,6 +104,9 @@ void handle_provide_parameter(void *parameters) {
                 break;
             case INVALIDATE_ORDER:
                 handle_invalidated_order(msg, context);
+                break;
+            case SET_PRE_SIGNATURE:
+                handle_set_pre_signature(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);

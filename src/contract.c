@@ -15,10 +15,14 @@ static const uint8_t COWSWAP_WITHDRAW_SELECTOR[SELECTOR_SIZE] = {0x2e, 0x1a, 0x7
 // invalidated order : 0x15337bc0
 static const uint8_t COWSWAP_INVALIDATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x15, 0x33, 0x7b, 0xc0};
 
+// set pre signature : 0xec6cb13f
+static const uint8_t COWSWAP_SET_PRE_SIGNATURE_SELECTOR[SELECTOR_SIZE] = {0xec, 0x6c, 0xb1, 0x3f};
+
 // Array of all the different CoW Swap selectors.
 const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {COWSWAP_DEPOSIT_SELECTOR,
                                                                  COWSWAP_WITHDRAW_SELECTOR,
-                                                                 COWSWAP_INVALIDATE_ORDER_SELECTOR};
+                                                                 COWSWAP_INVALIDATE_ORDER_SELECTOR,
+                                                                 COWSWAP_SET_PRE_SIGNATURE_SELECTOR};
 
 // Ask dummy address ETH
 // Remove if not used

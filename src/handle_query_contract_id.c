@@ -16,6 +16,9 @@ void handle_query_contract_id(void *parameters) {
         case INVALIDATE_ORDER:
             strlcpy(msg->version, "Invalidate Order", msg->versionLength);
             break;
+        case SET_PRE_SIGNATURE:
+            strlcpy(msg->version, "Set Pre Signature", msg->versionLength);
+            break;
         default:
             PRINTF("Selector Index :%d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

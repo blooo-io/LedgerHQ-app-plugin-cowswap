@@ -48,7 +48,7 @@ let genericTx = {
 let config;
 
 const TIMEOUT = 2000000;
-jest.setTimeout(4000000)
+jest.setTimeout(TIMEOUT);
 
 /**
  * Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.
@@ -92,7 +92,6 @@ function txFromEtherscan(rawTx) {
  */
 function zemu(device, func, testNetwork, signed = false) {
   return async () => {
-    jest.setTimeout(TIMEOUT);
     let eth_path;
     let plugin;
     let sim_options = simOptions;
