@@ -28,7 +28,7 @@ static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters
     }
 }
 
-static void handle_invalidated_order(ethPluginProvideParameter_t *msg, 
+static void handle_invalidated_order(ethPluginProvideParameter_t *msg,
                                      cowswap_parameters_t *context) {
     switch (context->next_param) {
         case ORDER_UID_ONE:
