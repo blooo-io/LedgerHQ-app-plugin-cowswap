@@ -124,9 +124,9 @@ static void set_signed_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *conte
     }
 
     if (context->is_signed == 0) {
-        strlcpy(msg->title, "false", msg->titleLength);
+        strlcpy(msg->msg, "false", msg->msgLength);
     } else {
-        strlcpy(msg->title, "true", msg->titleLength);
+        strlcpy(msg->msg, "true", msg->msgLength);
     }
 }
 
