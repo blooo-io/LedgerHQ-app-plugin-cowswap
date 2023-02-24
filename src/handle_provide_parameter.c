@@ -12,14 +12,13 @@ static void handle_amount_received(ethPluginProvideParameter_t *msg,
     memcpy(context->amount_received, msg->parameter, INT256_LENGTH);
 }
 
-static void handle_order_uid_two(ethPluginProvideParameter_t *msg,
-                                 cowswap_parameters_t *context) {
+static void handle_order_uid_two(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     memcpy(context->amount_received, msg->parameter, ORDER_UID_TWO_LENGTH);
 }
 
 static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case AMOUNT_SENT :
+        case AMOUNT_SENT:
             handle_amount_sent(msg, context);
             break;
         default:
@@ -29,9 +28,10 @@ static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters
     }
 }
 
-static void handle_invalidated_order(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+static void handle_invalidated_order(ethPluginProvideParameter_t *msg, 
+                                     cowswap_parameters_t *context) {
     switch (context->next_param) {
-        case ORDER_UID_ONE :
+        case ORDER_UID_ONE:
             handle_amount_sent(msg, context);
             context->next_param = ORDER_UID_TWO;
             break;

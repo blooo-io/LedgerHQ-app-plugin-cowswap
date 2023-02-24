@@ -43,7 +43,7 @@ typedef enum {
 #define ORDER_UID_ONE   3  // Used for order UID first part
 #define ORDER_UID_TWO   4  // Used for order UID second part
 
-#define ORDER_UID_TWO_LENGTH 24 
+#define ORDER_UID_TWO_LENGTH 24
 #define ORDER_UID_LENGTH     56
 
 // Number of decimals used when the token wasn't found in the CAL.

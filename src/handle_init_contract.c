@@ -41,7 +41,6 @@ void handle_init_contract(void *parameters) {
             break;
         case INVALIDATE_ORDER:
             context->skip = 2;
-            //we skip 2 because offset is not needed since it's a single params function and the lenght while always be 56 
             context->next_param = ORDER_UID_ONE;
             break;
         default:

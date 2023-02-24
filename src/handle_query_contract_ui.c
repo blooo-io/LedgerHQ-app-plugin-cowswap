@@ -139,7 +139,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
             switch (index) {
                 case 0:
                     return ORDER_UID_SCREEN;
-                case 1 : 
+                case 1: 
                     return ORDER_UID_SCREEN_TWO;
                 default:
                     return ERROR;
@@ -173,7 +173,7 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case ORDER_UID_SCREEN_TWO:
             set_order_uid_two_ui(msg, context);
-        break;
+            break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
