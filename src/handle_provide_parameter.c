@@ -25,8 +25,9 @@ static void handle_address(ethPluginProvideParameter_t *msg, cowswap_parameters_
 }
 
 static void handle_token_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    memset(context->token_sent, 0, sizeof(context->token_sent));
-    memcpy(context->token_sent, msg->parameter, ADDRESS_LENGTH);
+    copy_address(context->contract_address_sent,
+                 msg->parameter,
+                 sizeof(context->contract_address_sent));
 }
 
 static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
