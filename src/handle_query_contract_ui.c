@@ -77,8 +77,6 @@ static void set_warning_ui(ethQueryContractUI_t *msg,
 static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case SET_PRE_SIGNATURE:
-            strlcpy(msg->title, "Order UID 1", msg->titleLength);
-            break;
         case INVALIDATE_ORDER:
             strlcpy(msg->title, "Order UID 1", msg->titleLength);
             break;
@@ -97,8 +95,6 @@ static void set_order_uid_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *co
 static void set_order_uid_two_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case SET_PRE_SIGNATURE:
-            strlcpy(msg->title, "Order UID 2", msg->titleLength);
-            break;
         case INVALIDATE_ORDER:
             strlcpy(msg->title, "Order UID 2", msg->titleLength);
             break;

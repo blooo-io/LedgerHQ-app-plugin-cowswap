@@ -41,9 +41,6 @@ static void handle_invalidated_order(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
-            context->next_param = NONE;
-            break;
-        case NONE:
             break;
         default:
             PRINTF("Param not supported\n");
@@ -66,9 +63,6 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
-            context->next_param = NONE;
-            break;
-        case NONE:
             break;
         default:
             PRINTF("Param not supported\n");
