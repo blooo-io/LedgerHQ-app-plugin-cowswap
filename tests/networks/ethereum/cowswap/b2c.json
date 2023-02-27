@@ -41,6 +41,11 @@
           "erc20OfInterest": [],
           "method": "createOrder",
           "plugin": "cowswap"
+        },
+        "0x7bc41b96": {
+          "erc20OfInterest": [],
+          "method": "invalidateOrder",
+          "plugin": "cowswap"
         }
       }
     },
@@ -51,6 +56,11 @@
         "0x322bba21": {
           "erc20OfInterest": [],
           "method": "createOrder",
+          "plugin": "cowswap"
+        },
+        "0x7bc41b96": {
+          "erc20OfInterest": [],
+          "method": "invalidateOrder",
           "plugin": "cowswap"
         }
       }

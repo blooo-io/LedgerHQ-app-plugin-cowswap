@@ -14,6 +14,7 @@ void handle_query_contract_id(void *parameters) {
             strlcpy(msg->version, "Withdraw", msg->versionLength);
             break;
         case INVALIDATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
             strlcpy(msg->version, "Invalidate Order", msg->versionLength);
             break;
         case SET_PRE_SIGNATURE:

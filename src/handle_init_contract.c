@@ -47,6 +47,7 @@ void handle_init_contract(void *parameters) {
             context->skip = 1; // no need for offset (it will just add additional not necessary steps)
             context->next_param = SIGNED;
             break;
+        case INVALIDATE_ORDER_ETH_FLOW:
         case CREATE_ORDER:
             context->next_param = TOKEN;
             break;

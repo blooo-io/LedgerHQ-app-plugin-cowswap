@@ -228,6 +228,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                 default:
                     return ERROR;
             }
+        case INVALIDATE_ORDER_ETH_FLOW:
         case CREATE_ORDER:
             switch (index) {
                 case 0:

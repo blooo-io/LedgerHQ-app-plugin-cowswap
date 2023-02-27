@@ -145,6 +145,7 @@ void handle_provide_parameter(void *parameters) {
             case SET_PRE_SIGNATURE:
                 handle_set_pre_signature(msg, context);
                 break;
+            case INVALIDATE_ORDER_ETH_FLOW:
             case CREATE_ORDER:
                 handle_create_order(msg, context);
                 break;
