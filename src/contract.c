@@ -18,12 +18,16 @@ static const uint8_t COWSWAP_INVALIDATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x15, 0
 // set pre signature : 0xec6cb13f
 static const uint8_t COWSWAP_SET_PRE_SIGNATURE_SELECTOR[SELECTOR_SIZE] = {0xec, 0x6c, 0xb1, 0x3f};
 
+// set pre signature : 0x322bba21
+static const uint8_t COWSWAP_CREATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x32, 0x2b, 0xba, 0x21};
+
 // Array of all the different CoW Swap selectors.
 const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {
     COWSWAP_DEPOSIT_SELECTOR,
     COWSWAP_WITHDRAW_SELECTOR,
     COWSWAP_INVALIDATE_ORDER_SELECTOR,
-    COWSWAP_SET_PRE_SIGNATURE_SELECTOR};
+    COWSWAP_SET_PRE_SIGNATURE_SELECTOR,
+    COWSWAP_CREATE_ORDER_SELECTOR};
 
 // Ask dummy address ETH
 // Remove if not used

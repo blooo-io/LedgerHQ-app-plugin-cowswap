@@ -4,6 +4,7 @@
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case DEPOSIT:
+        case CREATE_ORDER:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         case WITHDRAW:
@@ -45,6 +46,9 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
+        case CREATE_ORDER:
+            strlcpy(msg->title, "Receive", msg->titleLength);
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -119,10 +123,63 @@ static void set_signed_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *conte
             return;
     }
 
-    if (context->is_signed == 0) {
+    if (context->is_true == 0) {
         strlcpy(msg->msg, "false", msg->msgLength);
     } else {
         strlcpy(msg->msg, "true", msg->msgLength);
+    }
+}
+
+// Set UI for Token
+static void set_token_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case CREATE_ORDER:
+            strlcpy(msg->title, "Token", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    msg->msg[0] = '0';
+    msg->msg[1] = 'x';
+    getEthAddressStringFromBinary(context->receiver_address, msg->msg + 2, msg->pluginSharedRW->sha3, 1);
+}
+
+// Set UI for receiver
+static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case CREATE_ORDER:
+            strlcpy(msg->title, "Receiver", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    msg->msg[0] = '0';
+    msg->msg[1] = 'x';
+    getEthAddressStringFromBinary(context->receiver_address, msg->msg + 2, msg->pluginSharedRW->sha3, 1);
+}
+
+// Set UI for "Partial fill" screen.
+static void set_partial_fill_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case CREATE_ORDER:
+            strlcpy(msg->title, "Partial fill", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    if (context->is_true == 0) {
+        strlcpy(msg->msg, "Disabled", msg->msgLength);
+    } else {
+        strlcpy(msg->msg, "Enabled", msg->msgLength);
     }
 }
 
@@ -173,6 +230,25 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                 default:
                     return ERROR;
             }
+        case CREATE_ORDER:
+            switch (index) {
+                case 0:
+                if (token_sent_found) {
+                    return TOKEN_SCREEN;
+                } else {
+                    return WARN_SCREEN;
+                }
+                case 1:
+                    return RECEIVER_SCREEN;
+                case 2:
+                    return SEND_SCREEN;
+                case 3:
+                    return RECEIVE_SCREEN;
+                case 4:
+                    return PARTIAL_FILL_SCREEN;
+                default:
+                    return ERROR;
+            }
         default:
             return ERROR;
     }
@@ -205,6 +281,15 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case SIGNED_SCREEN:
             set_signed_ui(msg, context);
+            break;
+        case TOKEN_SCREEN:
+            set_token_ui(msg, context);
+            break;
+        case RECEIVER_SCREEN:
+            set_receiver_ui(msg, context);
+            break;
+        case PARTIAL_FILL_SCREEN:
+            set_partial_fill_ui(msg, context);
             break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);

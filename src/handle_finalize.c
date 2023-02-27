@@ -29,6 +29,9 @@ void handle_finalize(void *parameters) {
             case SET_PRE_SIGNATURE:
                 msg->numScreens = 3;
                 break;
+            case CREATE_ORDER:
+                msg->numScreens = 5;
+                break;
             default:
                 msg->numScreens = 2;
                 return;
