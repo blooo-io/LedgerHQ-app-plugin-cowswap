@@ -142,9 +142,7 @@ static void set_token_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *contex
             return;
     }
 
-    msg->msg[0] = '0';
-    msg->msg[1] = 'x';
-    getEthAddressStringFromBinary(context->receiver_address, msg->msg + 2, msg->pluginSharedRW->sha3, 1);
+    strlcpy(msg->msg, context->ticker_received, msg->msgLength);
 }
 
 // Set UI for receiver
@@ -233,7 +231,7 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
         case CREATE_ORDER:
             switch (index) {
                 case 0:
-                if (token_sent_found) {
+                if (token_received_found) {
                     return TOKEN_SCREEN;
                 } else {
                     return WARN_SCREEN;

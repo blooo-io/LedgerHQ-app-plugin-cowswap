@@ -21,13 +21,17 @@ static void handle_bool(ethPluginProvideParameter_t *msg, cowswap_parameters_t *
 }
 
 static void handle_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    memcpy(context->receiver_address, msg->parameter, ADDRESS_LENGTH);
+    copy_address(context->receiver_address,
+                 msg->parameter,
+                 sizeof(context->receiver_address));
+    printf_hex_array("ADDRESS RECEIVED: ", ADDRESS_LENGTH, context->receiver_address);
 }
 
 static void handle_token_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    copy_address(context->contract_address_sent,
+    copy_address(context->contract_address_received,
                  msg->parameter,
-                 sizeof(context->contract_address_sent));
+                 sizeof(context->contract_address_received));
+    printf_hex_array("TOKEN RECEIVED: ", ADDRESS_LENGTH, context->contract_address_received);
 }
 
 static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
@@ -100,7 +104,7 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             context->skip = 2;
             context->next_param = PARTIAL_FILL;
             break;
-        case PARTIAL_FILL
+        case PARTIAL_FILL:
             handle_bool(msg, context);
             break;
         default:

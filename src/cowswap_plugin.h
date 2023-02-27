@@ -8,7 +8,7 @@
 
 #define RUN_APPLICATION 1
 
-#define NUM_COWSWAP_SELECTORS 4
+#define NUM_COWSWAP_SELECTORS 5
 #define SELECTOR_SIZE         4
 
 #define PLUGIN_NAME "CoW Swap"
