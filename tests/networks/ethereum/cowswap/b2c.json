@@ -32,6 +32,17 @@
           "plugin": "cowswap"
         }
       }
+    },
+    {
+      "address": "0x40a50cf069e992aa4536211b23f286ef88752187",
+      "contractName": "CoWSwapEthFlow",
+      "selectors": {
+        "0x322bba21": {
+          "erc20OfInterest": [],
+          "method": "createOrder",
+          "plugin": "cowswap"
+        }
+      }
     }
   ],
   "name": "cowswap"
