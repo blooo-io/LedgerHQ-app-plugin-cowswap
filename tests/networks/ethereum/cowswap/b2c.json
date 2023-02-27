@@ -25,6 +25,11 @@
           "erc20OfInterest": [],
           "method": "invalidateOrder",
           "plugin": "cowswap"
+        },
+        "0xec6cb13f": {
+          "erc20OfInterest": [],
+          "method": "setPreSignature",
+          "plugin": "cowswap"
         }
       }
     }

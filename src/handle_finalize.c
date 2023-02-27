@@ -26,6 +26,9 @@ void handle_finalize(void *parameters) {
             case INVALIDATE_ORDER:
                 msg->numScreens = 2;
                 break;
+            case SET_PRE_SIGNATURE:
+                msg->numScreens = 3;
+                break;
             default:
                 msg->numScreens = 2;
                 return;
