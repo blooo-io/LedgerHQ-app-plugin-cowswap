@@ -35,7 +35,7 @@ void handle_init_contract(void *parameters) {
     switch (context->selectorIndex) {
         case DEPOSIT:
             context->next_param = NONE;
-            context->valid = 1; // need to be valid now because it will skip provide params
+            context->valid = 1;  // need to be valid now because it will skip provide params
             break;
         case WITHDRAW:
             context->next_param = AMOUNT_SENT;
