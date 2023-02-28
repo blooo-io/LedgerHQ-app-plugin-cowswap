@@ -108,6 +108,7 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             break;
         case PARTIAL_FILL:
             handle_bool(msg, context);
+            context->skip = 1;
             context->valid = 1;
             break;
         default:
