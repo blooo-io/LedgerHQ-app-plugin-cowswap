@@ -178,13 +178,8 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                             cowswap_parameters_t *context __attribute__((unused))) {
     uint8_t index = msg->screenIndex;
 
-    // Remove if not used from here
-    bool token_sent_found = context->tokens_found & TOKEN_SENT_FOUND;
     bool token_received_found = context->tokens_found & TOKEN_RECEIVED_FOUND;
 
-    bool both_tokens_found = token_received_found && token_sent_found;
-    bool both_tokens_not_found = !token_received_found && !token_sent_found;
-    // To here
     switch (context->selectorIndex) {
         case DEPOSIT:
             switch (index) {
