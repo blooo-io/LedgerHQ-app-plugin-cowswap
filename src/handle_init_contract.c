@@ -34,7 +34,6 @@ void handle_init_contract(void *parameters) {
     // Set `next_param` to be the first field we expect to parse.
     switch (context->selectorIndex) {
         case DEPOSIT:
-            context->next_param = NONE;
             context->valid = 1;  // need to be valid now because it will skip provide params
             break;
         case WITHDRAW:
@@ -45,7 +44,7 @@ void handle_init_contract(void *parameters) {
             context->next_param = ORDER_UID_ONE;
             break;
         case SET_PRE_SIGNATURE:
-            context->skip = 1;
+            context->skip++;
             context->next_param = SIGNED;
             break;
         case INVALIDATE_ORDER_ETH_FLOW:
