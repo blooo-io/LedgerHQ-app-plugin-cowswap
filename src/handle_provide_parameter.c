@@ -7,7 +7,8 @@ static void handle_amount_sent(ethPluginProvideParameter_t *msg, cowswap_paramet
     memcpy(context->amount_sent, msg->parameter, INT256_LENGTH);
 }
 
-static void handle_amount_received(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+static void handle_amount_received(ethPluginProvideParameter_t *msg,
+                                   cowswap_parameters_t *context) {
     memcpy(context->amount_received, msg->parameter, INT256_LENGTH);
 }
 
@@ -20,9 +21,7 @@ static void handle_bool(ethPluginProvideParameter_t *msg, cowswap_parameters_t *
 }
 
 static void handle_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    copy_address(context->receiver_address,
-                 msg->parameter,
-                 sizeof(context->receiver_address));
+    copy_address(context->receiver_address, msg->parameter, sizeof(context->receiver_address));
     printf_hex_array("ADDRESS RECEIVED: ", ADDRESS_LENGTH, context->receiver_address);
 }
 

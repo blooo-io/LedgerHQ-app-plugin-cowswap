@@ -22,7 +22,10 @@ static const uint8_t COWSWAP_SET_PRE_SIGNATURE_SELECTOR[SELECTOR_SIZE] = {0xec, 
 static const uint8_t COWSWAP_CREATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x32, 0x2b, 0xba, 0x21};
 
 // set pre signature : 0x7bc41b96
-static const uint8_t COWSWAP_INVALIDATE_ORDER_ETH_FLOW_SELECTOR[SELECTOR_SIZE] = {0x7b, 0xc4, 0x1b, 0x96};
+static const uint8_t COWSWAP_INVALIDATE_ORDER_ETH_FLOW_SELECTOR[SELECTOR_SIZE] = {0x7b, 
+                                                                                  0xc4, 
+                                                                                  0x1b, 
+                                                                                  0x96};
 
 // Array of all the different CoW Swap selectors.
 const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS] = {

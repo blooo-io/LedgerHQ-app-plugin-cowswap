@@ -40,11 +40,11 @@ void handle_init_contract(void *parameters) {
             context->next_param = AMOUNT_SENT;
             break;
         case INVALIDATE_ORDER:
-            context->skip = 2; // no need for offset and length (never change)
+            context->skip = 2;
             context->next_param = ORDER_UID_ONE;
             break;
         case SET_PRE_SIGNATURE:
-            context->skip = 1; // no need for offset (it will just add additional not necessary steps)
+            context->skip = 1;
             context->next_param = SIGNED;
             break;
         case INVALIDATE_ORDER_ETH_FLOW:

@@ -150,7 +150,10 @@ static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *con
 
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
-    getEthAddressStringFromBinary(context->receiver_address, msg->msg + 2, msg->pluginSharedRW->sha3, 1);
+    getEthAddressStringFromBinary(context->receiver_address, 
+                                  msg->msg + 2, 
+                                  msg->pluginSharedRW->sha3, 
+                                  1);
 }
 
 // Set UI for "Partial fill" screen.
@@ -219,11 +222,11 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
         case CREATE_ORDER:
             switch (index) {
                 case 0:
-                if (token_received_found) {
-                    return RECEIVE_SCREEN;
-                } else {
-                    return WARN_SCREEN;
-                }
+                    if (token_received_found) {
+                        return RECEIVE_SCREEN;
+                    } else {
+                        return WARN_SCREEN;
+                    }
                 case 1:
                     if (token_received_found) {
                         return SEND_SCREEN;
