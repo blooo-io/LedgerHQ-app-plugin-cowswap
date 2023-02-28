@@ -150,9 +150,9 @@ static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *con
 
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
-    getEthAddressStringFromBinary(context->receiver_address, 
-                                  msg->msg + 2, 
-                                  msg->pluginSharedRW->sha3, 
+    getEthAddressStringFromBinary(context->receiver_address,
+                                  msg->msg + 2,
+                                  msg->pluginSharedRW->sha3,
                                   1);
 }
 
