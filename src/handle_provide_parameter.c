@@ -19,8 +19,6 @@ static void handle_order_uid_two(ethPluginProvideParameter_t *msg, cowswap_param
 static void handle_bool(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
     if (!U2BE_from_parameter(msg->parameter, &context->is_true)) {
         msg->result = ETH_PLUGIN_RESULT_ERROR;
-    } else {
-        U2BE_from_parameter(msg->parameter, &(context->is_true));
     }
 }
 
@@ -40,7 +38,6 @@ static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters
     switch (context->next_param) {
         case AMOUNT_SENT:
             handle_amount_sent(msg, context);
-            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -58,7 +55,6 @@ static void handle_invalidated_order(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
-            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -81,7 +77,6 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
-            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -108,8 +103,6 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             break;
         case PARTIAL_FILL:
             handle_bool(msg, context);
-            context->skip = 1;
-            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -142,16 +135,20 @@ void handle_provide_parameter(void *parameters) {
         switch (context->selectorIndex) {
             case WITHDRAW:
                 handle_withdraw(msg, context);
+                context->valid = 1;
                 break;
             case INVALIDATE_ORDER:
                 handle_invalidated_order(msg, context);
+                context->valid = 1;
                 break;
             case SET_PRE_SIGNATURE:
                 handle_set_pre_signature(msg, context);
+                context->valid = 1;
                 break;
             case INVALIDATE_ORDER_ETH_FLOW:
             case CREATE_ORDER:
                 handle_create_order(msg, context);
+                context->valid = 1;
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);
