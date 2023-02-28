@@ -18,8 +18,6 @@ void handle_finalize(void *parameters) {
         // For each case return a number of screens
         switch (context->selectorIndex) {
             case DEPOSIT:
-                msg->numScreens = 1;
-                break;
             case WITHDRAW:
                 msg->numScreens = 1;
                 break;
@@ -28,6 +26,10 @@ void handle_finalize(void *parameters) {
                 break;
             case SET_PRE_SIGNATURE:
                 msg->numScreens = 3;
+                break;
+            case CREATE_ORDER:
+            case INVALIDATE_ORDER_ETH_FLOW:
+                msg->numScreens = 4;
                 break;
             default:
                 msg->numScreens = 2;

@@ -16,8 +16,20 @@ static void handle_order_uid_two(ethPluginProvideParameter_t *msg, cowswap_param
     memcpy(context->amount_received, msg->parameter, ORDER_UID_TWO_LENGTH);
 }
 
-static void handle_signed(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    U2BE_from_parameter(msg->parameter, &(context->is_signed));
+static void handle_bool(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    U2BE_from_parameter(msg->parameter, &(context->is_true));
+}
+
+static void handle_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    copy_address(context->receiver_address, msg->parameter, sizeof(context->receiver_address));
+    printf_hex_array("ADDRESS RECEIVED: ", ADDRESS_LENGTH, context->receiver_address);
+}
+
+static void handle_token_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    copy_address(context->contract_address_received,
+                 msg->parameter,
+                 sizeof(context->contract_address_received));
+    printf_hex_array("TOKEN RECEIVED: ", ADDRESS_LENGTH, context->contract_address_received);
 }
 
 static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
@@ -53,7 +65,7 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
                                      cowswap_parameters_t *context) {
     switch (context->next_param) {
         case SIGNED:
-            handle_signed(msg, context);
+            handle_bool(msg, context);
             context->skip = 1;
             context->next_param = ORDER_UID_ONE;
             break;
@@ -63,6 +75,32 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
+            break;
+        default:
+            PRINTF("Param not supported\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
+    switch (context->next_param) {
+        case TOKEN:
+            handle_token_address(msg, context);
+            context->next_param = RECIPIENT;
+            break;
+        case RECIPIENT:
+            handle_address(msg, context);
+            context->skip = 1;
+            context->next_param = AMOUNT_RECEIVED;
+            break;
+        case AMOUNT_RECEIVED:
+            handle_amount_received(msg, context);
+            context->skip = 3;
+            context->next_param = PARTIAL_FILL;
+            break;
+        case PARTIAL_FILL:
+            handle_bool(msg, context);
             break;
         default:
             PRINTF("Param not supported\n");
@@ -101,6 +139,10 @@ void handle_provide_parameter(void *parameters) {
                 break;
             case SET_PRE_SIGNATURE:
                 handle_set_pre_signature(msg, context);
+                break;
+            case INVALIDATE_ORDER_ETH_FLOW:
+            case CREATE_ORDER:
+                handle_create_order(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);

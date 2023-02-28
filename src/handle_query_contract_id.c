@@ -14,10 +14,14 @@ void handle_query_contract_id(void *parameters) {
             strlcpy(msg->version, "Withdraw", msg->versionLength);
             break;
         case INVALIDATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
             strlcpy(msg->version, "Invalidate Order", msg->versionLength);
             break;
         case SET_PRE_SIGNATURE:
             strlcpy(msg->version, "Set Pre Signature", msg->versionLength);
+            break;
+        case CREATE_ORDER:
+            strlcpy(msg->version, "Create Order", msg->versionLength);
             break;
         default:
             PRINTF("Selector Index :%d not supported\n", context->selectorIndex);

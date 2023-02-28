@@ -8,7 +8,7 @@
 
 #define RUN_APPLICATION 1
 
-#define NUM_COWSWAP_SELECTORS 4
+#define NUM_COWSWAP_SELECTORS 6
 #define SELECTOR_SIZE         4
 
 #define PLUGIN_NAME "CoW Swap"
@@ -24,7 +24,14 @@ extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];    // REMOVE IF NOT USED
     (!memcmp(_addr, PLUGIN_ETH_ADDRESS, ADDRESS_LENGTH) || \
      !memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 
-typedef enum { DEPOSIT, WITHDRAW, INVALIDATE_ORDER, SET_PRE_SIGNATURE } pluginSelector_t;
+typedef enum {
+    DEPOSIT,
+    WITHDRAW,
+    INVALIDATE_ORDER,
+    SET_PRE_SIGNATURE,
+    CREATE_ORDER,
+    INVALIDATE_ORDER_ETH_FLOW
+} pluginSelector_t;
 
 extern const uint8_t *const COWSWAP_SELECTORS[NUM_COWSWAP_SELECTORS];
 
@@ -36,6 +43,8 @@ typedef enum {
     ORDER_UID_SCREEN,
     ORDER_UID_SCREEN_TWO,
     SIGNED_SCREEN,
+    RECEIVER_SCREEN,
+    PARTIAL_FILL_SCREEN,
 } screens_t;
 
 #define AMOUNT_SENT     0  // Amount sent by the user to the contract.
@@ -44,6 +53,9 @@ typedef enum {
 #define ORDER_UID_ONE   3  // Used for order UID first part
 #define ORDER_UID_TWO   4  // Used for order UID second part
 #define SIGNED          5  // Order UID OFFSET
+#define TOKEN           6  // TOKEN
+#define RECIPIENT       7  // Recipient
+#define PARTIAL_FILL    8  // Partial fill
 
 #define ORDER_UID_TWO_LENGTH 24
 #define ORDER_UID_LENGTH     56
@@ -58,14 +70,17 @@ typedef enum {
 typedef struct cowswap_parameters_t {
     uint8_t amount_sent[INT256_LENGTH];
     uint8_t amount_received[INT256_LENGTH];
+
     uint8_t contract_address_sent[ADDRESS_LENGTH];
     uint8_t contract_address_received[ADDRESS_LENGTH];
+    uint8_t receiver_address[ADDRESS_LENGTH];
+
     char ticker_sent[MAX_TICKER_LEN];
     char ticker_received[MAX_TICKER_LEN];
 
     uint16_t offset;
     uint16_t checkpoint;
-    uint16_t is_signed;
+    uint16_t is_true;
 
     uint8_t next_param;
     uint8_t tokens_found;
@@ -76,9 +91,9 @@ typedef struct cowswap_parameters_t {
     uint8_t flags;
     uint8_t skip;
 } cowswap_parameters_t;  // Remove any variable not used
-// 32*2 + 2*20 + 11*2 = 126
+// 32*2 + 3*20 + 11*2 = 146
 // 2*3 + 1*8 = 14
-// 14+126 = 140
+// 14+126 = 160
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32.
 // Do not remove this check.

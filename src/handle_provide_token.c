@@ -32,14 +32,17 @@ void handle_provide_token(void *parameters) {
     }
 
     if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
+        PRINTF("CASE 1");
         received_network_token(context);
     } else if (msg->item2 != NULL) {
+        PRINTF("CASE 2");
         context->decimals_received = msg->item2->token.decimals;
         strlcpy(context->ticker_received,
                 (char *) msg->item2->token.ticker,
                 sizeof(context->ticker_received));
         context->tokens_found |= TOKEN_RECEIVED_FOUND;
     } else {
+        PRINTF("CASE 3");
         // CAL did not find the token and token is not ETH.
         context->decimals_received = DEFAULT_DECIMAL;
         strlcpy(context->ticker_received, DEFAULT_TICKER, sizeof(context->ticker_sent));

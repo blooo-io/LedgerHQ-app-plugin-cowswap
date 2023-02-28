@@ -47,6 +47,10 @@ void handle_init_contract(void *parameters) {
             context->skip = 1;
             context->next_param = SIGNED;
             break;
+        case INVALIDATE_ORDER_ETH_FLOW:
+        case CREATE_ORDER:
+            context->next_param = TOKEN;
+            break;
         default:
             PRINTF("Missing selectorIndex\n");
             msg->result = ETH_PLUGIN_RESULT_ERROR;

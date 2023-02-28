@@ -3,6 +3,10 @@
 // Set UI for the "Send" screen. Usually used for common amount value
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Sell Value", msg->titleLength);
+            break;
         case DEPOSIT:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
@@ -22,6 +26,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 
     // handle which data to return
     switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
         case DEPOSIT:
             amountToString(msg->pluginSharedRO->txContent->value.value,
                            msg->pluginSharedRO->txContent->value.length,
@@ -45,6 +51,10 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Buy Amount", msg->titleLength);
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -56,7 +66,6 @@ static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *cont
         strlcpy(context->ticker_received, msg->network_ticker, sizeof(context->ticker_received));
     }
 
-    // Convert to string.
     amountToString(context->amount_received,
                    INT256_LENGTH,
                    context->decimals_received,
@@ -119,10 +128,51 @@ static void set_signed_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *conte
             return;
     }
 
-    if (context->is_signed == 0) {
+    if (context->is_true == 0) {
         strlcpy(msg->msg, "false", msg->msgLength);
     } else {
         strlcpy(msg->msg, "true", msg->msgLength);
+    }
+}
+
+// Set UI for receiver
+static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Receiver", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    msg->msg[0] = '0';
+    msg->msg[1] = 'x';
+    getEthAddressStringFromBinary(context->receiver_address,
+                                  msg->msg + 2,
+                                  msg->pluginSharedRW->sha3,
+                                  1);
+}
+
+// Set UI for "Partial fill" screen.
+static void set_partial_fill_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
+    switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Partial fill", msg->titleLength);
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    if (context->is_true == 0) {
+        strlcpy(msg->msg, "Disabled", msg->msgLength);
+    } else {
+        strlcpy(msg->msg, "Enabled", msg->msgLength);
     }
 }
 
@@ -131,13 +181,8 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                             cowswap_parameters_t *context __attribute__((unused))) {
     uint8_t index = msg->screenIndex;
 
-    // Remove if not used from here
-    bool token_sent_found = context->tokens_found & TOKEN_SENT_FOUND;
     bool token_received_found = context->tokens_found & TOKEN_RECEIVED_FOUND;
 
-    bool both_tokens_found = token_received_found && token_sent_found;
-    bool both_tokens_not_found = !token_received_found && !token_sent_found;
-    // To here
     switch (context->selectorIndex) {
         case DEPOSIT:
             switch (index) {
@@ -173,6 +218,41 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
                 default:
                     return ERROR;
             }
+        case INVALIDATE_ORDER_ETH_FLOW:
+        case CREATE_ORDER:
+            switch (index) {
+                case 0:
+                    if (token_received_found) {
+                        return RECEIVE_SCREEN;
+                    } else {
+                        return WARN_SCREEN;
+                    }
+                case 1:
+                    if (token_received_found) {
+                        return SEND_SCREEN;
+                    } else {
+                        return RECEIVE_SCREEN;
+                    }
+                case 2:
+                    if (token_received_found) {
+                        return RECEIVER_SCREEN;
+                    } else {
+                        return SEND_SCREEN;
+                    }
+                case 3:
+                    if (token_received_found) {
+                        return PARTIAL_FILL_SCREEN;
+                    } else {
+                        return RECEIVER_SCREEN;
+                    }
+                case 4:
+                    if (!token_received_found) {
+                        return PARTIAL_FILL_SCREEN;
+                    }
+                    break;
+                default:
+                    return ERROR;
+            }
         default:
             return ERROR;
     }
@@ -205,6 +285,12 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case SIGNED_SCREEN:
             set_signed_ui(msg, context);
+            break;
+        case RECEIVER_SCREEN:
+            set_receiver_ui(msg, context);
+            break;
+        case PARTIAL_FILL_SCREEN:
+            set_partial_fill_ui(msg, context);
             break;
         default:
             PRINTF("Received an invalid screenIndex %d\n", screen);
