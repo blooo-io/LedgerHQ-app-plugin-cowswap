@@ -17,7 +17,11 @@ static void handle_order_uid_two(ethPluginProvideParameter_t *msg, cowswap_param
 }
 
 static void handle_bool(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
-    U2BE_from_parameter(msg->parameter, &(context->is_true));
+    if (!U2BE_from_parameter(msg->parameter, &context->is_true)) {
+        msg->result = ETH_PLUGIN_RESULT_ERROR;
+    } else {
+        U2BE_from_parameter(msg->parameter, &(context->is_true));
+    }
 }
 
 static void handle_address(ethPluginProvideParameter_t *msg, cowswap_parameters_t *context) {
@@ -36,6 +40,7 @@ static void handle_withdraw(ethPluginProvideParameter_t *msg, cowswap_parameters
     switch (context->next_param) {
         case AMOUNT_SENT:
             handle_amount_sent(msg, context);
+            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -53,6 +58,7 @@ static void handle_invalidated_order(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
+            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -75,6 +81,7 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
             break;
         case ORDER_UID_TWO:
             handle_order_uid_two(msg, context);
+            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -101,6 +108,7 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             break;
         case PARTIAL_FILL:
             handle_bool(msg, context);
+            context->valid = 1;
             break;
         default:
             PRINTF("Param not supported\n");

@@ -14,7 +14,7 @@ void handle_init_contract(void *parameters) {
 
     cowswap_parameters_t *context = (cowswap_parameters_t *) msg->pluginContext;
     memset(context, 0, sizeof(*context));
-    context->valid = 1;
+    context->valid = 0;
 
     // Determine a function to call
     size_t i;
@@ -35,6 +35,7 @@ void handle_init_contract(void *parameters) {
     switch (context->selectorIndex) {
         case DEPOSIT:
             context->next_param = NONE;
+            context->valid = 1; // need to be valid now because it will skip provide params
             break;
         case WITHDRAW:
             context->next_param = AMOUNT_SENT;
