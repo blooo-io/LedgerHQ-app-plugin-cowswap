@@ -5,7 +5,7 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
     switch (context->selectorIndex) {
         case CREATE_ORDER:
         case INVALIDATE_ORDER_ETH_FLOW:
-            strlcpy(msg->title, "Sell Value", msg->titleLength);
+            strlcpy(msg->title, "Sell Amount", msg->titleLength);
             break;
         case DEPOSIT:
             strlcpy(msg->title, "Send", msg->titleLength);
