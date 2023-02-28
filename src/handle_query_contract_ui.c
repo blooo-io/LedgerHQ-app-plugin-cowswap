@@ -3,8 +3,11 @@
 // Set UI for the "Send" screen. Usually used for common amount value
 static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
-        case DEPOSIT:
         case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Sell Value", msg->titleLength);
+            break;
+        case DEPOSIT:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         case WITHDRAW:
@@ -23,6 +26,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 
     // handle which data to return
     switch (context->selectorIndex) {
+        case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
         case DEPOSIT:
             amountToString(msg->pluginSharedRO->txContent->value.value,
                            msg->pluginSharedRO->txContent->value.length,
@@ -47,7 +52,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context
 static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case CREATE_ORDER:
-            strlcpy(msg->title, "Receive", msg->titleLength);
+        case INVALIDATE_ORDER_ETH_FLOW:
+            strlcpy(msg->title, "Buy Amount", msg->titleLength);
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
@@ -60,7 +66,6 @@ static void set_receive_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *cont
         strlcpy(context->ticker_received, msg->network_ticker, sizeof(context->ticker_received));
     }
 
-    // Convert to string.
     amountToString(context->amount_received,
                    INT256_LENGTH,
                    context->decimals_received,
@@ -130,25 +135,11 @@ static void set_signed_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *conte
     }
 }
 
-// Set UI for Token
-static void set_token_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
-    switch (context->selectorIndex) {
-        case CREATE_ORDER:
-            strlcpy(msg->title, "Token", msg->titleLength);
-            break;
-        default:
-            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            return;
-    }
-
-    strlcpy(msg->msg, context->ticker_received, msg->msgLength);
-}
-
 // Set UI for receiver
 static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
             strlcpy(msg->title, "Receiver", msg->titleLength);
             break;
         default:
@@ -166,6 +157,7 @@ static void set_receiver_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *con
 static void set_partial_fill_ui(ethQueryContractUI_t *msg, cowswap_parameters_t *context) {
     switch (context->selectorIndex) {
         case CREATE_ORDER:
+        case INVALIDATE_ORDER_ETH_FLOW:
             strlcpy(msg->title, "Partial fill", msg->titleLength);
             break;
         default:
@@ -233,18 +225,33 @@ static screens_t get_screen(ethQueryContractUI_t *msg,
             switch (index) {
                 case 0:
                 if (token_received_found) {
-                    return TOKEN_SCREEN;
+                    return RECEIVE_SCREEN;
                 } else {
                     return WARN_SCREEN;
                 }
                 case 1:
-                    return RECEIVER_SCREEN;
+                    if (token_received_found) {
+                        return SEND_SCREEN;
+                    } else {
+                        return RECEIVE_SCREEN;
+                    }
                 case 2:
-                    return SEND_SCREEN;
+                    if (token_received_found) {
+                        return RECEIVER_SCREEN;
+                    } else {
+                        return SEND_SCREEN;
+                    }
                 case 3:
-                    return RECEIVE_SCREEN;
+                    if (token_received_found) {
+                        return PARTIAL_FILL_SCREEN;
+                    } else {
+                        return RECEIVER_SCREEN;
+                    }
                 case 4:
-                    return PARTIAL_FILL_SCREEN;
+                    if (!token_received_found) {
+                        return PARTIAL_FILL_SCREEN;
+                    }
+                    break;
                 default:
                     return ERROR;
             }
@@ -280,9 +287,6 @@ void handle_query_contract_ui(void *parameters) {
             break;
         case SIGNED_SCREEN:
             set_signed_ui(msg, context);
-            break;
-        case TOKEN_SCREEN:
-            set_token_ui(msg, context);
             break;
         case RECEIVER_SCREEN:
             set_receiver_ui(msg, context);

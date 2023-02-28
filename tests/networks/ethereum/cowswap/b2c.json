@@ -38,12 +38,12 @@
       "contractName": "CoWSwapEthFlow",
       "selectors": {
         "0x322bba21": {
-          "erc20OfInterest": [],
+          "erc20OfInterest": ["order.buyToken"],
           "method": "createOrder",
           "plugin": "cowswap"
         },
         "0x7bc41b96": {
-          "erc20OfInterest": [],
+          "erc20OfInterest": ["order.buyToken"],
           "method": "invalidateOrder",
           "plugin": "cowswap"
         }
@@ -54,12 +54,12 @@
       "contractName": "CoWSwapEthFlow",
       "selectors": {
         "0x322bba21": {
-          "erc20OfInterest": [],
+          "erc20OfInterest": ["order.buyToken"],
           "method": "createOrder",
           "plugin": "cowswap"
         },
         "0x7bc41b96": {
-          "erc20OfInterest": [],
+          "erc20OfInterest": ["order.buyToken"],
           "method": "invalidateOrder",
           "plugin": "cowswap"
         }

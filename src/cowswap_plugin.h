@@ -36,7 +36,6 @@ typedef enum {
     ORDER_UID_SCREEN,
     ORDER_UID_SCREEN_TWO,
     SIGNED_SCREEN,
-    TOKEN_SCREEN,
     RECEIVER_SCREEN,
     PARTIAL_FILL_SCREEN,
 } screens_t;
@@ -64,9 +63,11 @@ typedef enum {
 typedef struct cowswap_parameters_t {
     uint8_t amount_sent[INT256_LENGTH];
     uint8_t amount_received[INT256_LENGTH];
+
     uint8_t contract_address_sent[ADDRESS_LENGTH];
     uint8_t contract_address_received[ADDRESS_LENGTH];
     uint8_t receiver_address[ADDRESS_LENGTH];
+
     char ticker_sent[MAX_TICKER_LEN];
     char ticker_received[MAX_TICKER_LEN];
 
