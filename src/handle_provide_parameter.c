@@ -68,7 +68,7 @@ static void handle_set_pre_signature(ethPluginProvideParameter_t *msg,
     switch (context->next_param) {
         case SIGNED:
             handle_bool(msg, context);
-            context->skip = 1;
+            context->skip++;
             context->next_param = ORDER_UID_ONE;
             break;
         case ORDER_UID_ONE:
@@ -93,7 +93,7 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             break;
         case RECIPIENT:
             handle_address(msg, context);
-            context->skip = 1;
+            context->skip++;
             context->next_param = AMOUNT_RECEIVED;
             break;
         case AMOUNT_RECEIVED:
@@ -103,6 +103,7 @@ static void handle_create_order(ethPluginProvideParameter_t *msg, cowswap_parame
             break;
         case PARTIAL_FILL:
             handle_bool(msg, context);
+            context->skip++;
             break;
         default:
             PRINTF("Param not supported\n");
@@ -135,25 +136,23 @@ void handle_provide_parameter(void *parameters) {
         switch (context->selectorIndex) {
             case WITHDRAW:
                 handle_withdraw(msg, context);
-                context->valid = 1;
                 break;
             case INVALIDATE_ORDER:
                 handle_invalidated_order(msg, context);
-                context->valid = 1;
                 break;
             case SET_PRE_SIGNATURE:
                 handle_set_pre_signature(msg, context);
-                context->valid = 1;
                 break;
             case INVALIDATE_ORDER_ETH_FLOW:
             case CREATE_ORDER:
                 handle_create_order(msg, context);
-                context->valid = 1;
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);
                 msg->result = ETH_PLUGIN_RESULT_ERROR;
                 break;
         }
+        // set valid to true after parsing all parameters
+        context->valid = 1;
     }
 }
