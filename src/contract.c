@@ -18,10 +18,10 @@ static const uint8_t COWSWAP_INVALIDATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x15, 0
 // set pre signature : 0xec6cb13f
 static const uint8_t COWSWAP_SET_PRE_SIGNATURE_SELECTOR[SELECTOR_SIZE] = {0xec, 0x6c, 0xb1, 0x3f};
 
-// set pre signature : 0x322bba21
+// create order : 0x322bba21
 static const uint8_t COWSWAP_CREATE_ORDER_SELECTOR[SELECTOR_SIZE] = {0x32, 0x2b, 0xba, 0x21};
 
-// set pre signature : 0x7bc41b96
+// invalidate order eth flow : 0x7bc41b96
 static const uint8_t COWSWAP_INVALIDATE_ORDER_ETH_FLOW_SELECTOR[SELECTOR_SIZE] = {0x7b,
                                                                                   0xc4,
                                                                                   0x1b,
